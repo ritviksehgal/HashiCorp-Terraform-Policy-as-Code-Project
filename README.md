@@ -23,7 +23,7 @@ Each custom policy outcome is based on the infrastruction configuration (Terrafo
 
 I have developed 2 scenarios for each policy: a pass scenario (in which the infrastructure is compliant) and a fail scenario (in which the infrastructure is not compliant).
 
-#HashiCorp's proprietary language
+# HashiCorp's proprietary language
 ![image](https://user-images.githubusercontent.com/50535512/204447223-10d79b2c-0828-4577-9501-61eeaf2d2387.png)
 
 
