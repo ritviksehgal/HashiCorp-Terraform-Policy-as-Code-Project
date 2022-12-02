@@ -1,1 +1,95 @@
+// It is a best practice to ensure that Cloud Audit Logging is configured to track all admin activities and read, write access to user data.
+// Reference: CIS for Google Cloud v1.3, policy 2.1
 
+
+// For the following resources: Audit logging on the project level, audit logging on the Org level, audit logging on the folder level.
+// For each of those resources, we are checking to ensure that DATA_READ, DATA_WRITE, and ADMIN_READ is properly defined. We are also checking to ensure that
+// no exceptions are made so that all operations will be properly logged
+//DATA_READ, DATA_WRITE, and ADMIN_READ arguements are configured for ALL services to ensure that all services are producing the required audit logs
+
+
+
+import "tfplan/v2" as plan
+
+project_iam_audit = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_project_iam_audit_config" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+deny_undefined = rule {
+all project_iam_audit as _, resources {
+    resources.change.after contains "audit_log_config"
+    }
+}
+
+
+project_iam_value_1 = rule {
+	        all project_iam_audit as _, resources {
+                all resources.change.after.audit_log_config as _, config {
+                        config.log_type contains "DATA_READ" or
+                            config.log_type contains "ADMIN_READ" or
+                                config.log_type contains "DATA_WRITE"
+        }
+    }
+}
+
+project_iam_value_2 = rule when project_iam_value_1 is true {
+            all project_iam_audit as _, resources {
+                all resources.change.after.audit_log_config as _, config {
+                        config.exempted_members is []
+            }
+        }
+    }
+
+project_iam_value_3 = rule {
+	        all project_iam_audit as _, resources {
+                all resources.change.after as _, after {
+                resources.change.after.service is "allServices"
+            }
+     }
+}
+
+project_iam_value_4 = rule {
+all project_iam_audit as _, resources {
+	all resources.change.after as _, after {
+        	resources.change.after.audit_log_config[0].log_type contains "DATA_READ" or
+                	resources.change.after.audit_log_config[0].log_type contains "ADMIN_READ" or 
+                		resources.change.after.audit_log_config[0].log_type contains "DATA_WRITE"
+            }
+     }
+}
+
+project_iam_value_5 = rule when project_iam_value_1 is true {
+	all project_iam_audit as _, resources {
+		all resources.change.after as _, after {
+                	resources.change.after.audit_log_config[1].log_type contains "DATA_READ" or
+                		resources.change.after.audit_log_config[1].log_type contains "ADMIN_READ" or 
+                			resources.change.after.audit_log_config[1].log_type contains "DATA_WRITE"
+            }
+     }
+}
+
+project_iam_value_6 = rule when project_iam_value_1 is true {
+	all project_iam_audit as _, resources {
+		all resources.change.after as _, after {
+                	resources.change.after.audit_log_config[2].log_type contains "DATA_READ" or
+                		resources.change.after.audit_log_config[2].log_type contains "ADMIN_READ" or 
+                			resources.change.after.audit_log_config[2].log_type contains "DATA_WRITE"
+            }
+     }
+}
+
+print("If this policy fails, ensure that a 'log_type' is specified for ADMIN_READ, DATA_READ, and DATA_WRITE. Ensure that there are no exempted members, all users and groups must be subjected to the policy. Log_type and exempted_members should be specified three times for each 'iam_audit_config' resource. Please refer to CIS for Google Cloud v1.3, policy 2.1")
+
+
+ main = rule {
+deny_undefined and 
+project_iam_value_1 and
+project_iam_value_2 and
+project_iam_value_3 and
+project_iam_value_4 and
+project_iam_value_5 and
+project_iam_value_6
+}
