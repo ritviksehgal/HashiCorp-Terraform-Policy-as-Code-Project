@@ -9,6 +9,7 @@ This project explores two key capabilities of Terraform: Infrastructure automati
 	• Second, the codification of security policies ensures that cloud infrastructure is in compliance at all times. Policy as code (PaC) helps maintain a standard within your organization by enforcing certain rules across the organization and best practices within specific cloud resources. PaC can also automate security testing to catch infrastructure created insecurely before it goes to production- thereby verifying the cloud enviorement remain secure and the threat landscape is reduced to the extent possible. HashiCorp Sentinel is a Policy-as-Code (PaC) framework enables this.
 	
 # About the policies
+
 The following custom policies were developed using the CIS Benchmarks for the Google Cloud Platform. CIS (Center for Internet Security) has created public, open- source documentation detailing important security considerations when designing an infrastructure on Google Cloud Platform. The latest version was updated March 2022.
 
 The custom policies in this repository are numbered and correspond to the policy documentation in the CIS benchmarks for Google Cloud.
