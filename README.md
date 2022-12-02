@@ -15,7 +15,7 @@ The custom policies in this repository are numbered and correspond to the policy
 
 For each policy, I have written documentation describing what the script does, pass/fail cases, and a summary of the best practice.
 
-#How to test Sentinel Policies using open- source, community tools
+# How to test Sentinel Policies using open- source, community tools
 
 The functionality of these policies are tested against the Sentinel CLI (Command Line Interface)
 
