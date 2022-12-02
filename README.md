@@ -16,15 +16,15 @@ The custom policies in this repository are numbered and correspond to the policy
 
 For each policy, I have written documentation describing what the script does, pass/fail cases, and a summary of the best practice.
 
-# How to test Sentinel Policies using open- source, community tools
+# How to Test HashiCorp Sentinel Policies using open- source, community tools
 
-The functionality of these policies are tested against the Sentinel CLI (Command Line Interface)
+The functionality of these policies are tested against the Sentinel CLI (Command Line Interface).
+The download is found here: https://docs.hashicorp.com/sentinel/downloads 
 
-Each custom policy outcome is based on the infrastruction configuration (Terraform IaC). Before the Infrastructure in created, Terraform creates a speculative plan (mock file) to show what the Infrastructure would be implemented in production. The policy checks to ensure the mock file is in compliance, if it is, the infrastructure is created. 
+Each custom policy outcome is based on the infrastruction configuration (Terraform IaC). Before the Infrastructure in created, Terraform creates a speculative plan (mock file) to show what the Infrastructure would be implemented in production. The policy checks to ensure the mock file is in compliance, if it is, the policy is passed and the infrastructure is created. 
 
 I have developed 2 scenarios for each policy: a pass scenario (in which the infrastructure is compliant) and a fail scenario (in which the infrastructure is not compliant).
 
 # HashiCorp's proprietary language
-![image](https://user-images.githubusercontent.com/50535512/204447223-10d79b2c-0828-4577-9501-61eeaf2d2387.png)
 
-
+I used Hashicorp Configuration Language (HCL) to develop the IaC and PaC scripts. HCL is used with HashiCorp's cloud infrastructure automation tools, such as Terraform.
