@@ -1,4 +1,4 @@
-# HashiCorp-Terraform-Policy-as-Code-Project
+# HashiCorp-Sentinel-Policy-as-Code-Project
 
 HashiCorp is a software company that provides modular DevOps infrastructure management for all types of cloud enviorement- public, private, and multi- cloud.  This project explores one of HashiCorp's hallmark products: Terraform
 
@@ -36,3 +36,16 @@ I have developed 2 scenarios for each policy: a pass scenario (in which the infr
 # HashiCorp's proprietary language
 
 I used Hashicorp Configuration Language (HCL) to develop the IaC and PaC scripts. HCL is used with HashiCorp's cloud infrastructure automation tools, such as Terraform.
+
+
+# Developement of Policy as Code and Workflow
+
+Regardless of the type of policy, there is a common workflow that is followed for the developement of each policy.
+
+1. A 'main.tf' file containing the IaC script is created, this represents the infrastructure configuration to be deployed onto the cloud platform.
+2. Using this script, we run a sepeclative plan using the 'terraform plan' command to review the potentioal changes and additions to our cloud infrastructure. The outcome is a 'mock' file describing all of the resources and configuration changes if the infrastrucute automation script is deployed.
+3. Using this speculative plan, we determine how best to apply best practices onto a specific cloud resource/ service. The outcome is a Policy as Code script that continuously monitors infrastructure chanages for potential misconfigurations and insecure deployements.
+4. Next, we create pass and fail senarios to thoroughly test the Policy. Note: for every policy there is only 1 pass senarios (the one that follows best practices). However, each policy can have multiple fail senarios. For purposes of this project, only 1 fail senario is created.
+5. Once we test the Infrasturcture as Code script and it passes all policies, we can be confident that the infrastucure follows best practices per CIS (Center for Internet Security). Deployement via the 'terraform apply' command is the final step. 
+
+
