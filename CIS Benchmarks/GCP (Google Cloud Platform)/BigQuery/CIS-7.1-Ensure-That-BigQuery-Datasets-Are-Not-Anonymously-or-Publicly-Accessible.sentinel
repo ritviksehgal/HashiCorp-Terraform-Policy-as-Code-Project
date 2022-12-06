@@ -1,0 +1,47 @@
+/*This policy ensures that BigQuery Datasets Are Not Anonymously or Publicly Accessible
+Below, we are checking the 'members' attribute of the 'bigquery_dataset' resource. We will ensure that members allAuthenticatedUsers and allUsers
+can not recieve a role. Thus, ensuring that BigQuery Datasets Are Not Anonymously or Publicly Accessible*/
+
+
+import "tfplan/v2" as plan
+
+Validate_BigQuery_Members = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_bigquery_dataset_iam_binding" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+Validate_BigQuery_Policy = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_bigquery_dataset_iam_policy" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+Validate_Members_can_not_access_BigQuery_Datasets_Anonymously_Publicly = rule {
+	all Validate_BigQuery_Members as _, resources {
+        	all resources.change.after as _, after {
+                	resources.change.after.members not contains "allAuthenticatedUsers" and
+                        	resources.change.after.members not contains "allUsers"
+        }
+    }
+}
+
+Validate_bigquery_policy_can_not_access_BigQuery_Datasets_Anonymously_Publicly = rule {
+	all Validate_BigQuery_Policy as _, resources {
+        	all resources.change.after as _, after {
+                	resources.change.after.policy_data not contains "allAuthenticatedUsers" and
+                        	resources.change.after.policy_data not contains "allUsers"
+        }
+    }
+}
+
+if Validate_Members_can_not_access_BigQuery_Datasets_Anonymously_Publicly is false {
+    print("Ensure that 'allUsers' and 'allAuthenticatedUsers' are not defined in the 'members' attribute of the resource 'google_bigquery_dataset_iam_binding'.")
+}
+
+main = rule {
+Validate_Members_can_not_access_BigQuery_Datasets_Anonymously_Publicly and
+Validate_bigquery_policy_can_not_access_BigQuery_Datasets_Anonymously_Publicly
+}
