@@ -44,9 +44,9 @@ project_iam_value_2 = rule when project_iam_value_1 is true {
     }
 
 project_iam_value_3 = rule {
-	        all project_iam_audit as _, resources {
-                all resources.change.after as _, after {
-                resources.change.after.service is "allServices"
+	all project_iam_audit as _, resources {
+        	all resources.change.after as _, after {
+                	resources.change.after.service is "allServices"
             }
      }
 }
