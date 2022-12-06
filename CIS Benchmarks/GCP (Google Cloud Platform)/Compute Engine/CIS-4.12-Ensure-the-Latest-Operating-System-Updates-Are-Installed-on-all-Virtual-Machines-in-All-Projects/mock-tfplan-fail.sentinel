@@ -1,0 +1,893 @@
+terraform_version = "1.3.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"google_os_config_patch_deployment.patch": {
+			"address":        "google_os_config_patch_deployment.patch",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "patch",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_os_config_patch_deployment",
+			"values": {
+				"description": null,
+				"duration":    null,
+				"instance_filter": [
+					{
+						"all":                    true,
+						"group_labels":           [],
+						"instance_name_prefixes": null,
+						"instances":              null,
+						"zones":                  null,
+					},
+				],
+				"one_time_schedule": [],
+				"patch_config": [
+					{
+						"apt": [
+							{
+								"excludes":           null,
+								"exclusive_packages": null,
+								"type":               "UPGRADE",
+							},
+						],
+						"goo": [],
+						"mig_instances_allowed": null,
+						"post_step":             [],
+						"pre_step":              [],
+						"reboot_config":         "DEFAULT",
+						"windows_update": [
+							{
+								"classifications": [
+									"SECURITY",
+								],
+								"excludes":          null,
+								"exclusive_patches": null,
+							},
+						],
+						"yum": [
+							{
+								"excludes":           null,
+								"exclusive_packages": null,
+								"minimal":            null,
+								"security":           false,
+							},
+						],
+						"zypper": [
+							{
+								"categories": [
+									"security",
+								],
+								"excludes":          null,
+								"exclusive_patches": null,
+								"severities":        null,
+								"with_optional":     null,
+								"with_update":       true,
+							},
+						],
+					},
+				],
+				"patch_deployment_id": "patch-deploy",
+				"recurring_schedule": [
+					{
+						"end_time": null,
+						"monthly": [
+							{
+								"month_day": null,
+								"week_day_of_month": [
+									{
+										"day_of_week":  "TUESDAY",
+										"week_ordinal": -1,
+									},
+								],
+							},
+						],
+						"start_time": null,
+						"time_of_day": [
+							{
+								"hours":   0,
+								"minutes": 30,
+								"nanos":   20,
+								"seconds": 30,
+							},
+						],
+						"time_zone": [
+							{
+								"id":      "America/New_York",
+								"version": null,
+							},
+						],
+						"weekly": [],
+					},
+				],
+				"rollout": [
+					{
+						"disruption_budget": [
+							{
+								"fixed":      1,
+								"percentage": null,
+							},
+						],
+						"mode": "ZONE_BY_ZONE",
+					},
+				],
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"google_os_config_patch_deployment.patch": {
+		"address": "google_os_config_patch_deployment.patch",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"description": null,
+				"duration":    null,
+				"instance_filter": [
+					{
+						"all":                    true,
+						"group_labels":           [],
+						"instance_name_prefixes": null,
+						"instances":              null,
+						"zones":                  null,
+					},
+				],
+				"one_time_schedule": [],
+				"patch_config": [
+					{
+						"apt": [
+							{
+								"excludes":           null,
+								"exclusive_packages": null,
+								"type":               "UPGRADE",
+							},
+						],
+						"goo": [],
+						"mig_instances_allowed": null,
+						"post_step":             [],
+						"pre_step":              [],
+						"reboot_config":         "DEFAULT",
+						"windows_update": [
+							{
+								"classifications": [
+									"SECURITY",
+								],
+								"excludes":          null,
+								"exclusive_patches": null,
+							},
+						],
+						"yum": [
+							{
+								"excludes":           null,
+								"exclusive_packages": null,
+								"minimal":            null,
+								"security":           false,
+							},
+						],
+						"zypper": [
+							{
+								"categories": [
+									"security",
+								],
+								"excludes":          null,
+								"exclusive_patches": null,
+								"severities":        null,
+								"with_optional":     null,
+								"with_update":       true,
+							},
+						],
+					},
+				],
+				"patch_deployment_id": "patch-deploy",
+				"recurring_schedule": [
+					{
+						"end_time": null,
+						"monthly": [
+							{
+								"month_day": null,
+								"week_day_of_month": [
+									{
+										"day_of_week":  "TUESDAY",
+										"week_ordinal": -1,
+									},
+								],
+							},
+						],
+						"start_time": null,
+						"time_of_day": [
+							{
+								"hours":   0,
+								"minutes": 30,
+								"nanos":   20,
+								"seconds": 30,
+							},
+						],
+						"time_zone": [
+							{
+								"id":      "America/New_York",
+								"version": null,
+							},
+						],
+						"weekly": [],
+					},
+				],
+				"rollout": [
+					{
+						"disruption_budget": [
+							{
+								"fixed":      1,
+								"percentage": null,
+							},
+						],
+						"mode": "ZONE_BY_ZONE",
+					},
+				],
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"create_time": true,
+				"id":          true,
+				"instance_filter": [
+					{
+						"group_labels": [],
+					},
+				],
+				"last_execute_time": true,
+				"name":              true,
+				"one_time_schedule": [],
+				"patch_config": [
+					{
+						"apt": [
+							{},
+						],
+						"goo":       [],
+						"post_step": [],
+						"pre_step":  [],
+						"windows_update": [
+							{
+								"classifications": [
+									false,
+								],
+							},
+						],
+						"yum": [
+							{},
+						],
+						"zypper": [
+							{
+								"categories": [
+									false,
+								],
+							},
+						],
+					},
+				],
+				"project": true,
+				"recurring_schedule": [
+					{
+						"last_execute_time": true,
+						"monthly": [
+							{
+								"week_day_of_month": [
+									{},
+								],
+							},
+						],
+						"next_execute_time": true,
+						"time_of_day": [
+							{},
+						],
+						"time_zone": [
+							{},
+						],
+						"weekly": [],
+					},
+				],
+				"rollout": [
+					{
+						"disruption_budget": [
+							{},
+						],
+					},
+				],
+				"update_time": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "patch",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_os_config_patch_deployment",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"google": {
+				"expressions": {
+					"credentials": {
+						"constant_value": "keys.json",
+					},
+					"project": {
+						"constant_value": "elevated-module-365823",
+					},
+					"region": {
+						"constant_value": "us-east1",
+					},
+					"zone": {
+						"constant_value": "us-east1-b",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/google",
+				"name":               "google",
+				"version_constraint": "4.38.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "google_os_config_patch_deployment.patch",
+					"expressions": {
+						"instance_filter": [
+							{
+								"all": {
+									"constant_value": true,
+								},
+							},
+						],
+						"patch_config": [
+							{
+								"apt": [
+									{
+										"type": {
+											"constant_value": "UPGRADE",
+										},
+									},
+								],
+								"reboot_config": {
+									"constant_value": "DEFAULT",
+								},
+								"windows_update": [
+									{
+										"classifications": {
+											"constant_value": [
+												"SECURITY",
+											],
+										},
+									},
+								],
+								"yum": [
+									{
+										"security": {
+											"constant_value": false,
+										},
+									},
+								],
+								"zypper": [
+									{
+										"categories": {
+											"constant_value": [
+												"security",
+											],
+										},
+										"with_update": {
+											"constant_value": true,
+										},
+									},
+								],
+							},
+						],
+						"patch_deployment_id": {
+							"constant_value": "patch-deploy",
+						},
+						"recurring_schedule": [
+							{
+								"monthly": [
+									{
+										"week_day_of_month": [
+											{
+												"day_of_week": {
+													"constant_value": "TUESDAY",
+												},
+												"week_ordinal": {
+													"constant_value": -1,
+												},
+											},
+										],
+									},
+								],
+								"time_of_day": [
+									{
+										"hours": {
+											"constant_value": 0,
+										},
+										"minutes": {
+											"constant_value": 30,
+										},
+										"nanos": {
+											"constant_value": 20,
+										},
+										"seconds": {
+											"constant_value": 30,
+										},
+									},
+								],
+								"time_zone": [
+									{
+										"id": {
+											"constant_value": "America/New_York",
+										},
+									},
+								],
+							},
+						],
+						"rollout": [
+							{
+								"disruption_budget": [
+									{
+										"fixed": {
+											"constant_value": 1,
+										},
+									},
+								],
+								"mode": {
+									"constant_value": "ZONE_BY_ZONE",
+								},
+							},
+						],
+					},
+					"mode":                "managed",
+					"name":                "patch",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_os_config_patch_deployment",
+				},
+			],
+		},
+	},
+	"format_version": "1.1",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "google_os_config_patch_deployment.patch",
+					"mode":           "managed",
+					"name":           "patch",
+					"provider_name":  "registry.terraform.io/hashicorp/google",
+					"schema_version": 0,
+					"sensitive_values": {
+						"instance_filter": [
+							{
+								"group_labels": [],
+							},
+						],
+						"one_time_schedule": [],
+						"patch_config": [
+							{
+								"apt": [
+									{},
+								],
+								"goo":       [],
+								"post_step": [],
+								"pre_step":  [],
+								"windows_update": [
+									{
+										"classifications": [
+											false,
+										],
+									},
+								],
+								"yum": [
+									{},
+								],
+								"zypper": [
+									{
+										"categories": [
+											false,
+										],
+									},
+								],
+							},
+						],
+						"recurring_schedule": [
+							{
+								"monthly": [
+									{
+										"week_day_of_month": [
+											{},
+										],
+									},
+								],
+								"time_of_day": [
+									{},
+								],
+								"time_zone": [
+									{},
+								],
+								"weekly": [],
+							},
+						],
+						"rollout": [
+							{
+								"disruption_budget": [
+									{},
+								],
+							},
+						],
+					},
+					"type": "google_os_config_patch_deployment",
+					"values": {
+						"description": null,
+						"duration":    null,
+						"instance_filter": [
+							{
+								"all":                    true,
+								"group_labels":           [],
+								"instance_name_prefixes": null,
+								"instances":              null,
+								"zones":                  null,
+							},
+						],
+						"one_time_schedule": [],
+						"patch_config": [
+							{
+								"apt": [
+									{
+										"excludes":           null,
+										"exclusive_packages": null,
+										"type":               "UPGRADE",
+									},
+								],
+								"goo": [],
+								"mig_instances_allowed": null,
+								"post_step":             [],
+								"pre_step":              [],
+								"reboot_config":         "DEFAULT",
+								"windows_update": [
+									{
+										"classifications": [
+											"SECURITY",
+										],
+										"excludes":          null,
+										"exclusive_patches": null,
+									},
+								],
+								"yum": [
+									{
+										"excludes":           null,
+										"exclusive_packages": null,
+										"minimal":            null,
+										"security":           false,
+									},
+								],
+								"zypper": [
+									{
+										"categories": [
+											"security",
+										],
+										"excludes":          null,
+										"exclusive_patches": null,
+										"severities":        null,
+										"with_optional":     null,
+										"with_update":       true,
+									},
+								],
+							},
+						],
+						"patch_deployment_id": "patch-deploy",
+						"recurring_schedule": [
+							{
+								"end_time": null,
+								"monthly": [
+									{
+										"month_day": null,
+										"week_day_of_month": [
+											{
+												"day_of_week":  "TUESDAY",
+												"week_ordinal": -1,
+											},
+										],
+									},
+								],
+								"start_time": null,
+								"time_of_day": [
+									{
+										"hours":   0,
+										"minutes": 30,
+										"nanos":   20,
+										"seconds": 30,
+									},
+								],
+								"time_zone": [
+									{
+										"id":      "America/New_York",
+										"version": null,
+									},
+								],
+								"weekly": [],
+							},
+						],
+						"rollout": [
+							{
+								"disruption_budget": [
+									{
+										"fixed":      1,
+										"percentage": null,
+									},
+								],
+								"mode": "ZONE_BY_ZONE",
+							},
+						],
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "google_os_config_patch_deployment.patch",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"description": null,
+					"duration":    null,
+					"instance_filter": [
+						{
+							"all":                    true,
+							"group_labels":           [],
+							"instance_name_prefixes": null,
+							"instances":              null,
+							"zones":                  null,
+						},
+					],
+					"one_time_schedule": [],
+					"patch_config": [
+						{
+							"apt": [
+								{
+									"excludes":           null,
+									"exclusive_packages": null,
+									"type":               "UPGRADE",
+								},
+							],
+							"goo": [],
+							"mig_instances_allowed": null,
+							"post_step":             [],
+							"pre_step":              [],
+							"reboot_config":         "DEFAULT",
+							"windows_update": [
+								{
+									"classifications": [
+										"SECURITY",
+									],
+									"excludes":          null,
+									"exclusive_patches": null,
+								},
+							],
+							"yum": [
+								{
+									"excludes":           null,
+									"exclusive_packages": null,
+									"minimal":            null,
+									"security":           false,
+								},
+							],
+							"zypper": [
+								{
+									"categories": [
+										"security",
+									],
+									"excludes":          null,
+									"exclusive_patches": null,
+									"severities":        null,
+									"with_optional":     null,
+									"with_update":       true,
+								},
+							],
+						},
+					],
+					"patch_deployment_id": "patch-deploy",
+					"recurring_schedule": [
+						{
+							"end_time": null,
+							"monthly": [
+								{
+									"month_day": null,
+									"week_day_of_month": [
+										{
+											"day_of_week":  "TUESDAY",
+											"week_ordinal": -1,
+										},
+									],
+								},
+							],
+							"start_time": null,
+							"time_of_day": [
+								{
+									"hours":   0,
+									"minutes": 30,
+									"nanos":   20,
+									"seconds": 30,
+								},
+							],
+							"time_zone": [
+								{
+									"id":      "America/New_York",
+									"version": null,
+								},
+							],
+							"weekly": [],
+						},
+					],
+					"rollout": [
+						{
+							"disruption_budget": [
+								{
+									"fixed":      1,
+									"percentage": null,
+								},
+							],
+							"mode": "ZONE_BY_ZONE",
+						},
+					],
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"instance_filter": [
+						{
+							"group_labels": [],
+						},
+					],
+					"one_time_schedule": [],
+					"patch_config": [
+						{
+							"apt": [
+								{},
+							],
+							"goo":       [],
+							"post_step": [],
+							"pre_step":  [],
+							"windows_update": [
+								{
+									"classifications": [
+										false,
+									],
+								},
+							],
+							"yum": [
+								{},
+							],
+							"zypper": [
+								{
+									"categories": [
+										false,
+									],
+								},
+							],
+						},
+					],
+					"recurring_schedule": [
+						{
+							"monthly": [
+								{
+									"week_day_of_month": [
+										{},
+									],
+								},
+							],
+							"time_of_day": [
+								{},
+							],
+							"time_zone": [
+								{},
+							],
+							"weekly": [],
+						},
+					],
+					"rollout": [
+						{
+							"disruption_budget": [
+								{},
+							],
+						},
+					],
+				},
+				"after_unknown": {
+					"create_time": true,
+					"id":          true,
+					"instance_filter": [
+						{
+							"group_labels": [],
+						},
+					],
+					"last_execute_time": true,
+					"name":              true,
+					"one_time_schedule": [],
+					"patch_config": [
+						{
+							"apt": [
+								{},
+							],
+							"goo":       [],
+							"post_step": [],
+							"pre_step":  [],
+							"windows_update": [
+								{
+									"classifications": [
+										false,
+									],
+								},
+							],
+							"yum": [
+								{},
+							],
+							"zypper": [
+								{
+									"categories": [
+										false,
+									],
+								},
+							],
+						},
+					],
+					"project": true,
+					"recurring_schedule": [
+						{
+							"last_execute_time": true,
+							"monthly": [
+								{
+									"week_day_of_month": [
+										{},
+									],
+								},
+							],
+							"next_execute_time": true,
+							"time_of_day": [
+								{},
+							],
+							"time_zone": [
+								{},
+							],
+							"weekly": [],
+						},
+					],
+					"rollout": [
+						{
+							"disruption_budget": [
+								{},
+							],
+						},
+					],
+					"update_time": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "patch",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_os_config_patch_deployment",
+		},
+	],
+	"terraform_version": "1.3.2",
+}

@@ -1,0 +1,64 @@
+//This policy ensures that App Engine Applications (Standard and Flexible version) both Enforce HTTPS Connections (not HTTP as it is insecure)
+//Insecure HTTP connections maybe subject to eavesdropping which can expose sensitive data.
+//Here, we will ensure that the 'security_level' within the 'handlers' block is 'SECURE_ALWAYS'
+//The security level 'SECURE_ALWAYS' indicates that the Application (standard or flexible) enforces HTTPS connections (HTTP connections are redirected to an HTTPS endpoint)
+
+
+import "tfplan-functions" as plan
+import "tfplan/v2" as tfplan
+
+Validate_All_flex_apps = filter tfplan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_app_engine_flexible_app_version" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+
+Validate_All_standard_apps = filter tfplan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_app_engine_standard_app_version" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+
+deny_undefined_flex_apps = rule {
+  all Validate_All_flex_apps as _, resources {
+      resources.change.after contains "handlers"
+  }
+}
+
+
+deny_undefined_standard_apps = rule {
+  all Validate_All_standard_apps as _, resources {
+      resources.change.after contains "handlers"
+  }
+}
+
+
+validate_network_security_standard_apps = rule {
+  all Validate_All_standard_apps as _, resources {
+    all resources.change.after.handlers as _, handlers {
+      handlers.security_level is "SECURE_ALWAYS"
+    }
+  }
+}
+
+
+validate_network_security_flex_apps = rule {
+  all Validate_All_flex_apps as _, resources {
+    all resources.change.after.handlers as _, handlers {
+      handlers.security_level is "SECURE_ALWAYS"
+    }
+  }
+}
+
+
+print("Ensure that a 'handlers' block is defined with an argument of 'security_level'. To ensure the security of the application is strong and eavesdropping from hackers is prevented, ensure that the 'security_level' within the 'handlers' block is 'SECURE_ALWAYS'")
+
+
+main = rule {
+  deny_undefined_flex_apps and deny_undefined_standard_apps and
+  validate_network_security_standard_apps and validate_network_security_flex_apps
+}

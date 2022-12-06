@@ -1,0 +1,84 @@
+/*This policy ensures that the latest security /updates patches as well as critical operating system updates are installed on all virtual machines for all projects.
+Keeping an operating system up to date is the best way to secure against ever evolving known vulnerabilities and bugs in programs that can be used in cyber attacks by bad actors.
+The latest security patches and critical operating system updates are deployed on the first Tuesday of every month at 12:00 AM EST
+To ensure minimal downtime, 1 VM per avalibility zone will update at a time
+Note: This patch management policy does not apply to Managed instance groups (MIGs).*/
+
+
+import "tfplan/v2" as plan
+
+Validate_Patch_Configuration = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_os_config_patch_deployment" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+Patch_Deployment_Targets_all_VMs_all_Projects = rule {
+	all Validate_Patch_Configuration as _, resources {
+        	all resources.change.after.instance_filter as _, instance_filter {
+                	instance_filter.all is true
+        }
+    }
+}
+
+Validate_Patch_Configuration_for_all_VMs_Windows_Updates = rule when Patch_Deployment_Targets_all_VMs_all_Projects is true {
+	all Validate_Patch_Configuration as _, resources {
+        	all resources.change.after.patch_config as _, config {
+                	all config.windows_update as _, update {
+                        	update.classifications contains "SECURITY" and update.classifications contains "CRITICAL" and
+                        		update.excludes is null
+            }
+        }
+    }
+}
+
+
+Validate_Patch_Configuration_for_all_VMs_apt_Updates = rule when Patch_Deployment_Targets_all_VMs_all_Projects is true {
+	all Validate_Patch_Configuration as _, resources {
+        	all resources.change.after.patch_config as _, config {
+                	all config.apt as _, apt {
+                        	apt.type is "UPGRADE" and apt.excludes is null
+            }
+        }
+    }
+}
+
+
+
+Validate_Patch_Configuration_for_all_VMs_Zypper_Updates = rule when Patch_Deployment_Targets_all_VMs_all_Projects is true {
+	all Validate_Patch_Configuration as _, resources {
+        	all resources.change.after.patch_config as _, config {
+                	all config.zypper as _, zypper {
+                    		zypper.categories contains "security" and zypper.with_update is true and
+                        		zypper.excludes is null
+
+            }
+        }
+    }
+}
+
+
+Validate_Patch_Configuration_for_all_VMs_Yum_Updates = rule when Patch_Deployment_Targets_all_VMs_all_Projects is true {
+	all Validate_Patch_Configuration as _, resources {
+        	all resources.change.after.patch_config as _, config {
+                	all config.yum as _, yum {
+                    		yum.security is true and yum.excludes is null
+            }
+        }
+    }
+}
+
+
+
+print("In the 'patch_config' block, ensure there are no exclusions. (i.e. excludes = null) Ensure that APT upgrade type = UPGRADE (this ensures packages are only updated, nothing is replaced/ removed. If legacy applications are in the Cloud enviorement, they will not be effected by updates/ patches.) Ensure that YUM security updates are set to 'true' to ensure VMs are updated from a Cyber Security standpoint. With regards to Zypper updates, ensure that the caregory of 'security' is defined. Ensure 'with_update' is set to 'true' (This ensures that only required updates are deployed, as opposed to 'with_optional' that deploys optional updates as part of the patch process.) Regarding 'windows_update', ensure that the classifications are listed as 'SECURITY' , 'CRITICAL' (This ensures that only security updates and critical windows operating system updates are deployed) The remaining parameters of the patch management configuration as defined in main.tf are optional but recommended. Finally, ensure the 'instance_filter' is set it all, this ensures that ALL VMs in ALL projects are included in the Patch Management process")
+
+
+
+main = rule {
+Patch_Deployment_Targets_all_VMs_all_Projects and
+Validate_Patch_Configuration_for_all_VMs_Windows_Updates and
+Validate_Patch_Configuration_for_all_VMs_Yum_Updates and
+Validate_Patch_Configuration_for_all_VMs_Zypper_Updates and
+Validate_Patch_Configuration_for_all_VMs_apt_Updates
+}

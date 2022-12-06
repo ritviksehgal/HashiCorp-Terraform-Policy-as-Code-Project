@@ -1,0 +1,1029 @@
+terraform_version = "1.3.3"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"google_app_engine_flexible_app_version.myapp_v1": {
+			"address":        "google_app_engine_flexible_app_version.myapp_v1",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "myapp_v1",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_app_engine_flexible_app_version",
+			"values": {
+				"api_config": [],
+				"automatic_scaling": [
+					{
+						"cool_down_period": "120s",
+						"cpu_utilization": [
+							{
+								"aggregation_window_length": null,
+								"target_utilization":        0.5,
+							},
+						],
+						"disk_utilization":    [],
+						"max_idle_instances":  null,
+						"max_pending_latency": null,
+						"max_total_instances": 20,
+						"min_idle_instances":  null,
+						"min_pending_latency": null,
+						"min_total_instances": 2,
+						"network_utilization": [],
+						"request_utilization": [],
+					},
+				],
+				"beta_settings":             null,
+				"default_expiration":        null,
+				"delete_service_on_destroy": false,
+				"deployment":                [],
+				"endpoints_api_service":     [],
+				"entrypoint": [
+					{
+						"shell": "node ./app.js",
+					},
+				],
+				"env_variables": null,
+				"handlers": [
+					{
+						"auth_fail_action": null,
+						"login":            null,
+						"redirect_http_response_code": null,
+						"script":                      [],
+						"security_level":              null,
+						"static_files":                [],
+						"url_regex":                   null,
+					},
+				],
+				"inbound_services": null,
+				"instance_class":   null,
+				"liveness_check": [
+					{
+						"check_interval":    "30s",
+						"failure_threshold": 4,
+						"host":              null,
+						"initial_delay":     "300s",
+						"path":              "/",
+						"success_threshold": 2,
+						"timeout":           "4s",
+					},
+				],
+				"manual_scaling":      [],
+				"network":             [],
+				"nobuild_files_regex": null,
+				"noop_on_destroy":     false,
+				"project":             "google_project_iam_member.gae_api.project",
+				"readiness_check": [
+					{
+						"app_start_timeout": "300s",
+						"check_interval":    "5s",
+						"failure_threshold": 2,
+						"host":              null,
+						"path":              "/",
+						"success_threshold": 2,
+						"timeout":           "4s",
+					},
+				],
+				"resources":                    [],
+				"runtime":                      "nodejs",
+				"runtime_channel":              null,
+				"runtime_main_executable_path": null,
+				"service":                      "default",
+				"service_account":              null,
+				"serving_status":               "SERVING",
+				"timeouts":                     null,
+				"version_id":                   "v1",
+				"vpc_access_connector":         [],
+			},
+		},
+		"google_app_engine_standard_app_version.myapp_v1": {
+			"address":        "google_app_engine_standard_app_version.myapp_v1",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "myapp_v1",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_app_engine_standard_app_version",
+			"values": {
+				"app_engine_apis":           null,
+				"automatic_scaling":         [],
+				"basic_scaling":             [],
+				"delete_service_on_destroy": false,
+				"deployment": [
+					{
+						"files": [],
+						"zip": [
+							{
+								"files_count": null,
+								"source_url":  "https://storage.googleapis.com/",
+							},
+						],
+					},
+				],
+				"entrypoint": [
+					{
+						"shell": "node ./app.js",
+					},
+				],
+				"env_variables": null,
+				"handlers": [
+					{
+						"auth_fail_action": null,
+						"login":            null,
+						"redirect_http_response_code": null,
+						"script":                      [],
+						"security_level":              "SECURE_ALWAYS",
+						"static_files":                [],
+						"url_regex":                   null,
+					},
+				],
+				"inbound_services":     null,
+				"libraries":            [],
+				"manual_scaling":       [],
+				"noop_on_destroy":      false,
+				"runtime":              "nodejs10",
+				"runtime_api_version":  null,
+				"service":              "myapp",
+				"threadsafe":           null,
+				"timeouts":             null,
+				"version_id":           "v1",
+				"vpc_access_connector": [],
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"google_app_engine_flexible_app_version.myapp_v1": {
+		"address": "google_app_engine_flexible_app_version.myapp_v1",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"api_config": [],
+				"automatic_scaling": [
+					{
+						"cool_down_period": "120s",
+						"cpu_utilization": [
+							{
+								"aggregation_window_length": null,
+								"target_utilization":        0.5,
+							},
+						],
+						"disk_utilization":    [],
+						"max_idle_instances":  null,
+						"max_pending_latency": null,
+						"max_total_instances": 20,
+						"min_idle_instances":  null,
+						"min_pending_latency": null,
+						"min_total_instances": 2,
+						"network_utilization": [],
+						"request_utilization": [],
+					},
+				],
+				"beta_settings":             null,
+				"default_expiration":        null,
+				"delete_service_on_destroy": false,
+				"deployment":                [],
+				"endpoints_api_service":     [],
+				"entrypoint": [
+					{
+						"shell": "node ./app.js",
+					},
+				],
+				"env_variables": null,
+				"handlers": [
+					{
+						"auth_fail_action": null,
+						"login":            null,
+						"redirect_http_response_code": null,
+						"script":                      [],
+						"security_level":              null,
+						"static_files":                [],
+						"url_regex":                   null,
+					},
+				],
+				"inbound_services": null,
+				"instance_class":   null,
+				"liveness_check": [
+					{
+						"check_interval":    "30s",
+						"failure_threshold": 4,
+						"host":              null,
+						"initial_delay":     "300s",
+						"path":              "/",
+						"success_threshold": 2,
+						"timeout":           "4s",
+					},
+				],
+				"manual_scaling":      [],
+				"network":             [],
+				"nobuild_files_regex": null,
+				"noop_on_destroy":     false,
+				"project":             "google_project_iam_member.gae_api.project",
+				"readiness_check": [
+					{
+						"app_start_timeout": "300s",
+						"check_interval":    "5s",
+						"failure_threshold": 2,
+						"host":              null,
+						"path":              "/",
+						"success_threshold": 2,
+						"timeout":           "4s",
+					},
+				],
+				"resources":                    [],
+				"runtime":                      "nodejs",
+				"runtime_channel":              null,
+				"runtime_main_executable_path": null,
+				"service":                      "default",
+				"service_account":              null,
+				"serving_status":               "SERVING",
+				"timeouts":                     null,
+				"version_id":                   "v1",
+				"vpc_access_connector":         [],
+			},
+			"after_unknown": {
+				"api_config": [],
+				"automatic_scaling": [
+					{
+						"cpu_utilization": [
+							{},
+						],
+						"disk_utilization":        [],
+						"max_concurrent_requests": true,
+						"network_utilization":     [],
+						"request_utilization":     [],
+					},
+				],
+				"deployment":            [],
+				"endpoints_api_service": [],
+				"entrypoint": [
+					{},
+				],
+				"handlers": [
+					{
+						"script":       [],
+						"static_files": [],
+					},
+				],
+				"id": true,
+				"liveness_check": [
+					{},
+				],
+				"manual_scaling": [],
+				"name":           true,
+				"network":        [],
+				"readiness_check": [
+					{},
+				],
+				"resources":            [],
+				"runtime_api_version":  true,
+				"vpc_access_connector": [],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "myapp_v1",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_app_engine_flexible_app_version",
+	},
+	"google_app_engine_standard_app_version.myapp_v1": {
+		"address": "google_app_engine_standard_app_version.myapp_v1",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"app_engine_apis":           null,
+				"automatic_scaling":         [],
+				"basic_scaling":             [],
+				"delete_service_on_destroy": false,
+				"deployment": [
+					{
+						"files": [],
+						"zip": [
+							{
+								"files_count": null,
+								"source_url":  "https://storage.googleapis.com/",
+							},
+						],
+					},
+				],
+				"entrypoint": [
+					{
+						"shell": "node ./app.js",
+					},
+				],
+				"env_variables": null,
+				"handlers": [
+					{
+						"auth_fail_action": null,
+						"login":            null,
+						"redirect_http_response_code": null,
+						"script":                      [],
+						"security_level":              "SECURE_ALWAYS",
+						"static_files":                [],
+						"url_regex":                   null,
+					},
+				],
+				"inbound_services":     null,
+				"libraries":            [],
+				"manual_scaling":       [],
+				"noop_on_destroy":      false,
+				"runtime":              "nodejs10",
+				"runtime_api_version":  null,
+				"service":              "myapp",
+				"threadsafe":           null,
+				"timeouts":             null,
+				"version_id":           "v1",
+				"vpc_access_connector": [],
+			},
+			"after_unknown": {
+				"automatic_scaling": [],
+				"basic_scaling":     [],
+				"deployment": [
+					{
+						"files": [],
+						"zip": [
+							{},
+						],
+					},
+				],
+				"entrypoint": [
+					{},
+				],
+				"handlers": [
+					{
+						"script":       [],
+						"static_files": [],
+					},
+				],
+				"id":                   true,
+				"instance_class":       true,
+				"libraries":            [],
+				"manual_scaling":       [],
+				"name":                 true,
+				"project":              true,
+				"vpc_access_connector": [],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "myapp_v1",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_app_engine_standard_app_version",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"google": {
+				"expressions": {
+					"credentials": {
+						"constant_value": "keys.json",
+					},
+					"project": {
+						"constant_value": "daring-bit-365423",
+					},
+					"region": {
+						"constant_value": "us-east1",
+					},
+					"zone": {
+						"constant_value": "us-east1-b",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/google",
+				"name":               "google",
+				"version_constraint": "4.38.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "google_app_engine_flexible_app_version.myapp_v1",
+					"expressions": {
+						"automatic_scaling": [
+							{
+								"cool_down_period": {
+									"constant_value": "120s",
+								},
+								"cpu_utilization": [
+									{
+										"target_utilization": {
+											"constant_value": 0.5,
+										},
+									},
+								],
+							},
+						],
+						"entrypoint": [
+							{
+								"shell": {
+									"constant_value": "node ./app.js",
+								},
+							},
+						],
+						"handlers": [
+							{},
+						],
+						"liveness_check": [
+							{
+								"path": {
+									"constant_value": "/",
+								},
+							},
+						],
+						"project": {
+							"constant_value": "google_project_iam_member.gae_api.project",
+						},
+						"readiness_check": [
+							{
+								"path": {
+									"constant_value": "/",
+								},
+							},
+						],
+						"runtime": {
+							"constant_value": "nodejs",
+						},
+						"service": {
+							"constant_value": "default",
+						},
+						"version_id": {
+							"constant_value": "v1",
+						},
+					},
+					"mode":                "managed",
+					"name":                "myapp_v1",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_app_engine_flexible_app_version",
+				},
+				{
+					"address": "google_app_engine_standard_app_version.myapp_v1",
+					"expressions": {
+						"deployment": [
+							{
+								"zip": [
+									{
+										"source_url": {
+											"constant_value": "https://storage.googleapis.com/",
+										},
+									},
+								],
+							},
+						],
+						"entrypoint": [
+							{
+								"shell": {
+									"constant_value": "node ./app.js",
+								},
+							},
+						],
+						"handlers": [
+							{
+								"security_level": {
+									"constant_value": "SECURE_ALWAYS",
+								},
+							},
+						],
+						"runtime": {
+							"constant_value": "nodejs10",
+						},
+						"service": {
+							"constant_value": "myapp",
+						},
+						"version_id": {
+							"constant_value": "v1",
+						},
+					},
+					"mode":                "managed",
+					"name":                "myapp_v1",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_app_engine_standard_app_version",
+				},
+			],
+		},
+	},
+	"format_version": "1.1",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "google_app_engine_flexible_app_version.myapp_v1",
+					"mode":           "managed",
+					"name":           "myapp_v1",
+					"provider_name":  "registry.terraform.io/hashicorp/google",
+					"schema_version": 0,
+					"sensitive_values": {
+						"api_config": [],
+						"automatic_scaling": [
+							{
+								"cpu_utilization": [
+									{},
+								],
+								"disk_utilization":    [],
+								"network_utilization": [],
+								"request_utilization": [],
+							},
+						],
+						"deployment":            [],
+						"endpoints_api_service": [],
+						"entrypoint": [
+							{},
+						],
+						"handlers": [
+							{
+								"script":       [],
+								"static_files": [],
+							},
+						],
+						"liveness_check": [
+							{},
+						],
+						"manual_scaling": [],
+						"network":        [],
+						"readiness_check": [
+							{},
+						],
+						"resources":            [],
+						"vpc_access_connector": [],
+					},
+					"type": "google_app_engine_flexible_app_version",
+					"values": {
+						"api_config": [],
+						"automatic_scaling": [
+							{
+								"cool_down_period": "120s",
+								"cpu_utilization": [
+									{
+										"aggregation_window_length": null,
+										"target_utilization":        0.5,
+									},
+								],
+								"disk_utilization":    [],
+								"max_idle_instances":  null,
+								"max_pending_latency": null,
+								"max_total_instances": 20,
+								"min_idle_instances":  null,
+								"min_pending_latency": null,
+								"min_total_instances": 2,
+								"network_utilization": [],
+								"request_utilization": [],
+							},
+						],
+						"beta_settings":             null,
+						"default_expiration":        null,
+						"delete_service_on_destroy": false,
+						"deployment":                [],
+						"endpoints_api_service":     [],
+						"entrypoint": [
+							{
+								"shell": "node ./app.js",
+							},
+						],
+						"env_variables": null,
+						"handlers": [
+							{
+								"auth_fail_action": null,
+								"login":            null,
+								"redirect_http_response_code": null,
+								"script":                      [],
+								"security_level":              null,
+								"static_files":                [],
+								"url_regex":                   null,
+							},
+						],
+						"inbound_services": null,
+						"instance_class":   null,
+						"liveness_check": [
+							{
+								"check_interval":    "30s",
+								"failure_threshold": 4,
+								"host":              null,
+								"initial_delay":     "300s",
+								"path":              "/",
+								"success_threshold": 2,
+								"timeout":           "4s",
+							},
+						],
+						"manual_scaling":      [],
+						"network":             [],
+						"nobuild_files_regex": null,
+						"noop_on_destroy":     false,
+						"project":             "google_project_iam_member.gae_api.project",
+						"readiness_check": [
+							{
+								"app_start_timeout": "300s",
+								"check_interval":    "5s",
+								"failure_threshold": 2,
+								"host":              null,
+								"path":              "/",
+								"success_threshold": 2,
+								"timeout":           "4s",
+							},
+						],
+						"resources":                    [],
+						"runtime":                      "nodejs",
+						"runtime_channel":              null,
+						"runtime_main_executable_path": null,
+						"service":                      "default",
+						"service_account":              null,
+						"serving_status":               "SERVING",
+						"timeouts":                     null,
+						"version_id":                   "v1",
+						"vpc_access_connector":         [],
+					},
+				},
+				{
+					"address":        "google_app_engine_standard_app_version.myapp_v1",
+					"mode":           "managed",
+					"name":           "myapp_v1",
+					"provider_name":  "registry.terraform.io/hashicorp/google",
+					"schema_version": 0,
+					"sensitive_values": {
+						"automatic_scaling": [],
+						"basic_scaling":     [],
+						"deployment": [
+							{
+								"files": [],
+								"zip": [
+									{},
+								],
+							},
+						],
+						"entrypoint": [
+							{},
+						],
+						"handlers": [
+							{
+								"script":       [],
+								"static_files": [],
+							},
+						],
+						"libraries":            [],
+						"manual_scaling":       [],
+						"vpc_access_connector": [],
+					},
+					"type": "google_app_engine_standard_app_version",
+					"values": {
+						"app_engine_apis":           null,
+						"automatic_scaling":         [],
+						"basic_scaling":             [],
+						"delete_service_on_destroy": false,
+						"deployment": [
+							{
+								"files": [],
+								"zip": [
+									{
+										"files_count": null,
+										"source_url":  "https://storage.googleapis.com/",
+									},
+								],
+							},
+						],
+						"entrypoint": [
+							{
+								"shell": "node ./app.js",
+							},
+						],
+						"env_variables": null,
+						"handlers": [
+							{
+								"auth_fail_action": null,
+								"login":            null,
+								"redirect_http_response_code": null,
+								"script":                      [],
+								"security_level":              "SECURE_ALWAYS",
+								"static_files":                [],
+								"url_regex":                   null,
+							},
+						],
+						"inbound_services":     null,
+						"libraries":            [],
+						"manual_scaling":       [],
+						"noop_on_destroy":      false,
+						"runtime":              "nodejs10",
+						"runtime_api_version":  null,
+						"service":              "myapp",
+						"threadsafe":           null,
+						"timeouts":             null,
+						"version_id":           "v1",
+						"vpc_access_connector": [],
+					},
+				},
+			],
+		},
+	},
+	"prior_state": {
+		"format_version":    "1.0",
+		"terraform_version": "1.3.3",
+		"values": {
+			"root_module": {},
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "google_app_engine_flexible_app_version.myapp_v1",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"api_config": [],
+					"automatic_scaling": [
+						{
+							"cool_down_period": "120s",
+							"cpu_utilization": [
+								{
+									"aggregation_window_length": null,
+									"target_utilization":        0.5,
+								},
+							],
+							"disk_utilization":    [],
+							"max_idle_instances":  null,
+							"max_pending_latency": null,
+							"max_total_instances": 20,
+							"min_idle_instances":  null,
+							"min_pending_latency": null,
+							"min_total_instances": 2,
+							"network_utilization": [],
+							"request_utilization": [],
+						},
+					],
+					"beta_settings":             null,
+					"default_expiration":        null,
+					"delete_service_on_destroy": false,
+					"deployment":                [],
+					"endpoints_api_service":     [],
+					"entrypoint": [
+						{
+							"shell": "node ./app.js",
+						},
+					],
+					"env_variables": null,
+					"handlers": [
+						{
+							"auth_fail_action": null,
+							"login":            null,
+							"redirect_http_response_code": null,
+							"script":                      [],
+							"security_level":              null,
+							"static_files":                [],
+							"url_regex":                   null,
+						},
+					],
+					"inbound_services": null,
+					"instance_class":   null,
+					"liveness_check": [
+						{
+							"check_interval":    "30s",
+							"failure_threshold": 4,
+							"host":              null,
+							"initial_delay":     "300s",
+							"path":              "/",
+							"success_threshold": 2,
+							"timeout":           "4s",
+						},
+					],
+					"manual_scaling":      [],
+					"network":             [],
+					"nobuild_files_regex": null,
+					"noop_on_destroy":     false,
+					"project":             "google_project_iam_member.gae_api.project",
+					"readiness_check": [
+						{
+							"app_start_timeout": "300s",
+							"check_interval":    "5s",
+							"failure_threshold": 2,
+							"host":              null,
+							"path":              "/",
+							"success_threshold": 2,
+							"timeout":           "4s",
+						},
+					],
+					"resources":                    [],
+					"runtime":                      "nodejs",
+					"runtime_channel":              null,
+					"runtime_main_executable_path": null,
+					"service":                      "default",
+					"service_account":              null,
+					"serving_status":               "SERVING",
+					"timeouts":                     null,
+					"version_id":                   "v1",
+					"vpc_access_connector":         [],
+				},
+				"after_sensitive": {
+					"api_config": [],
+					"automatic_scaling": [
+						{
+							"cpu_utilization": [
+								{},
+							],
+							"disk_utilization":    [],
+							"network_utilization": [],
+							"request_utilization": [],
+						},
+					],
+					"deployment":            [],
+					"endpoints_api_service": [],
+					"entrypoint": [
+						{},
+					],
+					"handlers": [
+						{
+							"script":       [],
+							"static_files": [],
+						},
+					],
+					"liveness_check": [
+						{},
+					],
+					"manual_scaling": [],
+					"network":        [],
+					"readiness_check": [
+						{},
+					],
+					"resources":            [],
+					"vpc_access_connector": [],
+				},
+				"after_unknown": {
+					"api_config": [],
+					"automatic_scaling": [
+						{
+							"cpu_utilization": [
+								{},
+							],
+							"disk_utilization":        [],
+							"max_concurrent_requests": true,
+							"network_utilization":     [],
+							"request_utilization":     [],
+						},
+					],
+					"deployment":            [],
+					"endpoints_api_service": [],
+					"entrypoint": [
+						{},
+					],
+					"handlers": [
+						{
+							"script":       [],
+							"static_files": [],
+						},
+					],
+					"id": true,
+					"liveness_check": [
+						{},
+					],
+					"manual_scaling": [],
+					"name":           true,
+					"network":        [],
+					"readiness_check": [
+						{},
+					],
+					"resources":            [],
+					"runtime_api_version":  true,
+					"vpc_access_connector": [],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "myapp_v1",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_app_engine_flexible_app_version",
+		},
+		{
+			"address": "google_app_engine_standard_app_version.myapp_v1",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"app_engine_apis":           null,
+					"automatic_scaling":         [],
+					"basic_scaling":             [],
+					"delete_service_on_destroy": false,
+					"deployment": [
+						{
+							"files": [],
+							"zip": [
+								{
+									"files_count": null,
+									"source_url":  "https://storage.googleapis.com/",
+								},
+							],
+						},
+					],
+					"entrypoint": [
+						{
+							"shell": "node ./app.js",
+						},
+					],
+					"env_variables": null,
+					"handlers": [
+						{
+							"auth_fail_action": null,
+							"login":            null,
+							"redirect_http_response_code": null,
+							"script":                      [],
+							"security_level":              "SECURE_ALWAYS",
+							"static_files":                [],
+							"url_regex":                   null,
+						},
+					],
+					"inbound_services":     null,
+					"libraries":            [],
+					"manual_scaling":       [],
+					"noop_on_destroy":      false,
+					"runtime":              "nodejs10",
+					"runtime_api_version":  null,
+					"service":              "myapp",
+					"threadsafe":           null,
+					"timeouts":             null,
+					"version_id":           "v1",
+					"vpc_access_connector": [],
+				},
+				"after_sensitive": {
+					"automatic_scaling": [],
+					"basic_scaling":     [],
+					"deployment": [
+						{
+							"files": [],
+							"zip": [
+								{},
+							],
+						},
+					],
+					"entrypoint": [
+						{},
+					],
+					"handlers": [
+						{
+							"script":       [],
+							"static_files": [],
+						},
+					],
+					"libraries":            [],
+					"manual_scaling":       [],
+					"vpc_access_connector": [],
+				},
+				"after_unknown": {
+					"automatic_scaling": [],
+					"basic_scaling":     [],
+					"deployment": [
+						{
+							"files": [],
+							"zip": [
+								{},
+							],
+						},
+					],
+					"entrypoint": [
+						{},
+					],
+					"handlers": [
+						{
+							"script":       [],
+							"static_files": [],
+						},
+					],
+					"id":                   true,
+					"instance_class":       true,
+					"libraries":            [],
+					"manual_scaling":       [],
+					"name":                 true,
+					"project":              true,
+					"vpc_access_connector": [],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "myapp_v1",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_app_engine_standard_app_version",
+		},
+	],
+	"terraform_version": "1.3.3",
+}
