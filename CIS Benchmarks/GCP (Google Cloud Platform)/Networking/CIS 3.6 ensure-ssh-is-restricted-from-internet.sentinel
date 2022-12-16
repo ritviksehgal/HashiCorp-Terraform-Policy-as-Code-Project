@@ -1,0 +1,37 @@
+# It imports mock-tfplan-v2 sentinel mock file
+
+import "tfplan/v2" as tfplan
+
+
+allFirewallResources = filter tfplan.resource_changes as _, resource_changes {
+	resource_changes.type is "google_compute_firewall" and
+		resource_changes.mode is "managed" and
+		(resource_changes.change.actions contains "create" or
+			resource_changes.change.actions is ["update"])
+}
+
+
+deny_public_ssh_access = rule {
+	all allFirewallResources as _, resources {
+		all resources.change.after.allow as _, allow {
+			all	allow.ports as _, ports {
+				ports not contains "22"
+			}
+		}
+	}
+}
+
+deny_public_CIDR_ranges = rule {
+	all allFirewallResources as _, resources {
+		all resources.change.after.source_ranges as _, ranges {
+				ranges not in allUnsupportedSourceRanges
+			 } 
+		}	
+	}
+
+	allUnsupportedSourceRanges =["/0","0.0.0.0","0.0.0.0/0","::0"]
+	
+	
+main = rule {
+deny_public_ssh_access or deny_public_CIDR_ranges
+}
