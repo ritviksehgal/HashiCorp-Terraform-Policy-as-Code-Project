@@ -1,0 +1,40 @@
+# It imports mock-tfplan-v2 from the sentinel mocks
+import "tfplan/v2" as tfplan
+
+# It finds the resource "google_sql_database_instance" from the sentinel mock
+allSQLDatabaseResources = filter tfplan.resource_changes as _, resource_changes {
+	resource_changes.type is "google_sql_database_instance" and
+		resource_changes.mode is "managed" and
+		(resource_changes.change.actions contains "create" or
+			resource_changes.change.actions is ["update"])
+}
+
+# It checks if the length of backup_configuration block is not null
+deny_undefined_autobackup = rule {
+	all filter allSQLDatabaseResources as _, resources {
+		resources.change.after.database_version contains "MYSQL" or resources.change.after.database_version contains "POSTGRES" or resources.change.after.database_version contains "SQLSERVER"
+	} as _, resources {
+		all resources.change.after.settings as _, settings {
+			keys(settings) contains "backup_configuration" and
+				length(settings.backup_configuration else []) != 0
+		}
+	}
+}
+
+# It checks parameter "enabled" in backup_configuration is set to true
+database_flags_require_enable_backup = rule when deny_undefined_autobackup is true {
+	all filter allSQLDatabaseResources as _, resources {
+		resources.change.after.database_version contains "MYSQL" or resources.change.after.database_version contains "POSTGRES" or resources.change.after.database_version contains "SQLSERVER"
+	} as _, instances {
+		all instances.change.after.settings as _, setting {
+			all setting.backup_configuration as _, backup {
+				backup.enabled is true
+			}
+		}
+	}
+}
+
+main = rule {
+	deny_undefined_autobackup and
+	database_flags_require_enable_backup
+}
