@@ -1,0 +1,512 @@
+terraform_version = "1.3.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"google_sql_database_instance.main": {
+			"address":        "google_sql_database_instance.main",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "main",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_sql_database_instance",
+			"values": {
+				"clone":                  [],
+				"database_version":       "POSTGRES_14",
+				"deletion_protection":    false,
+				"name":                   "sqlins",
+				"region":                 "us-central1",
+				"restore_backup_context": [],
+				"root_password":          "REDACTED_SENSITIVE",
+				"settings": [
+					{
+						"activation_policy":       "ALWAYS",
+						"active_directory_config": [],
+						"availability_type":       "ZONAL",
+						"backup_configuration": [
+							{
+								"binary_log_enabled":             null,
+								"enabled":                        false,
+								"location":                       null,
+								"point_in_time_recovery_enabled": null,
+								"start_time":                     "04:30",
+							},
+						],
+						"collation":               null,
+						"database_flags":          [],
+						"disk_autoresize":         true,
+						"disk_autoresize_limit":   0,
+						"disk_type":               "PD_SSD",
+						"insights_config":         [],
+						"maintenance_window":      [],
+						"pricing_plan":            "PER_USE",
+						"sql_server_audit_config": [],
+						"tier": "db-custom-2-13312",
+					},
+				],
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {
+	"Enabled": {
+		"name":  "Enabled",
+		"value": false,
+	},
+	"Region": {
+		"name":  "Region",
+		"value": "us-central1",
+	},
+	"Tier": {
+		"name":  "Tier",
+		"value": "db-custom-2-13312",
+	},
+	"databaseversion": {
+		"name":  "databaseversion",
+		"value": "POSTGRES_14",
+	},
+	"gcp_project": {
+		"name":  "gcp_project",
+		"value": "REDACTED_SENSITIVE",
+	},
+	"rootpassword": {
+		"name":  "rootpassword",
+		"value": "N8M9so+5cq+ceHam",
+	},
+	"sqlinstancename": {
+		"name":  "sqlinstancename",
+		"value": "sqlins",
+	},
+	"starttime": {
+		"name":  "starttime",
+		"value": "04:30",
+	},
+}
+
+resource_changes = {
+	"google_sql_database_instance.main": {
+		"address": "google_sql_database_instance.main",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"clone":                  [],
+				"database_version":       "POSTGRES_14",
+				"deletion_protection":    false,
+				"name":                   "sqlins",
+				"region":                 "us-central1",
+				"restore_backup_context": [],
+				"root_password":          "REDACTED_SENSITIVE",
+				"settings": [
+					{
+						"activation_policy":       "ALWAYS",
+						"active_directory_config": [],
+						"availability_type":       "ZONAL",
+						"backup_configuration": [
+							{
+								"binary_log_enabled":             null,
+								"enabled":                        false,
+								"location":                       null,
+								"point_in_time_recovery_enabled": null,
+								"start_time":                     "04:30",
+							},
+						],
+						"collation":               null,
+						"database_flags":          [],
+						"disk_autoresize":         true,
+						"disk_autoresize_limit":   0,
+						"disk_type":               "PD_SSD",
+						"insights_config":         [],
+						"maintenance_window":      [],
+						"pricing_plan":            "PER_USE",
+						"sql_server_audit_config": [],
+						"tier": "db-custom-2-13312",
+					},
+				],
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"clone":                         [],
+				"connection_name":               true,
+				"encryption_key_name":           true,
+				"first_ip_address":              true,
+				"id":                            true,
+				"ip_address":                    true,
+				"master_instance_name":          true,
+				"private_ip_address":            true,
+				"project":                       true,
+				"public_ip_address":             true,
+				"replica_configuration":         true,
+				"restore_backup_context":        [],
+				"self_link":                     true,
+				"server_ca_cert":                true,
+				"service_account_email_address": true,
+				"settings": [
+					{
+						"active_directory_config": [],
+						"backup_configuration": [
+							{
+								"backup_retention_settings":      true,
+								"transaction_log_retention_days": true,
+							},
+						],
+						"database_flags":          [],
+						"disk_size":               true,
+						"insights_config":         [],
+						"ip_configuration":        true,
+						"location_preference":     true,
+						"maintenance_window":      [],
+						"sql_server_audit_config": [],
+						"user_labels":             true,
+						"version":                 true,
+					},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "main",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_sql_database_instance",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"google": {
+				"expressions": {
+					"credentials": {
+						"constant_value": "key2.json",
+					},
+					"project": {
+						"constant_value": "cswg-356213",
+					},
+					"region": {
+						"constant_value": "us-central1",
+					},
+					"zone": {
+						"constant_value": "us-central1-a",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/google",
+				"name":               "google",
+				"version_constraint": "4.29.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "google_sql_database_instance.main",
+					"expressions": {
+						"database_version": {
+							"references": [
+								"var.databaseversion",
+							],
+						},
+						"deletion_protection": {
+							"constant_value": false,
+						},
+						"name": {
+							"references": [
+								"var.sqlinstancename",
+							],
+						},
+						"region": {
+							"references": [
+								"var.Region",
+							],
+						},
+						"root_password": {
+							"references": [
+								"var.rootpassword",
+							],
+						},
+						"settings": [
+							{
+								"backup_configuration": [
+									{
+										"enabled": {
+											"references": [
+												"var.Enabled",
+											],
+										},
+										"start_time": {
+											"references": [
+												"var.starttime",
+											],
+										},
+									},
+								],
+								"tier": {
+									"references": [
+										"var.Tier",
+									],
+								},
+							},
+						],
+					},
+					"mode":                "managed",
+					"name":                "main",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_sql_database_instance",
+				},
+			],
+			"variables": {
+				"Enabled": {
+					"default": false,
+				},
+				"Region": {
+					"default": "us-central1",
+				},
+				"Tier": {
+					"default": "db-custom-2-13312",
+				},
+				"databaseversion": {
+					"default": "POSTGRES_14",
+				},
+				"gcp_project": {
+					"sensitive": true,
+				},
+				"rootpassword": {
+					"default": "N8M9so+5cq+ceHam",
+				},
+				"sqlinstancename": {
+					"default": "sqlins",
+				},
+				"starttime": {
+					"default": "04:30",
+				},
+			},
+		},
+	},
+	"format_version": "1.1",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "google_sql_database_instance.main",
+					"mode":           "managed",
+					"name":           "main",
+					"provider_name":  "registry.terraform.io/hashicorp/google",
+					"schema_version": 0,
+					"sensitive_values": {
+						"clone":                  [],
+						"ip_address":             [],
+						"replica_configuration":  [],
+						"restore_backup_context": [],
+						"server_ca_cert":         [],
+						"settings": [
+							{
+								"active_directory_config": [],
+								"backup_configuration": [
+									{
+										"backup_retention_settings": [],
+									},
+								],
+								"database_flags":          [],
+								"insights_config":         [],
+								"ip_configuration":        [],
+								"location_preference":     [],
+								"maintenance_window":      [],
+								"sql_server_audit_config": [],
+								"user_labels":             {},
+							},
+						],
+					},
+					"type": "google_sql_database_instance",
+					"values": {
+						"clone":                  [],
+						"database_version":       "POSTGRES_14",
+						"deletion_protection":    false,
+						"name":                   "sqlins",
+						"region":                 "us-central1",
+						"restore_backup_context": [],
+						"root_password":          "REDACTED_SENSITIVE",
+						"settings": [
+							{
+								"activation_policy":       "ALWAYS",
+								"active_directory_config": [],
+								"availability_type":       "ZONAL",
+								"backup_configuration": [
+									{
+										"binary_log_enabled":             null,
+										"enabled":                        false,
+										"location":                       null,
+										"point_in_time_recovery_enabled": null,
+										"start_time":                     "04:30",
+									},
+								],
+								"collation":               null,
+								"database_flags":          [],
+								"disk_autoresize":         true,
+								"disk_autoresize_limit":   0,
+								"disk_type":               "PD_SSD",
+								"insights_config":         [],
+								"maintenance_window":      [],
+								"pricing_plan":            "PER_USE",
+								"sql_server_audit_config": [],
+								"tier": "db-custom-2-13312",
+							},
+						],
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "google_sql_database_instance.main",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"clone":                  [],
+					"database_version":       "POSTGRES_14",
+					"deletion_protection":    false,
+					"name":                   "sqlins",
+					"region":                 "us-central1",
+					"restore_backup_context": [],
+					"root_password":          "REDACTED_SENSITIVE",
+					"settings": [
+						{
+							"activation_policy":       "ALWAYS",
+							"active_directory_config": [],
+							"availability_type":       "ZONAL",
+							"backup_configuration": [
+								{
+									"binary_log_enabled":             null,
+									"enabled":                        false,
+									"location":                       null,
+									"point_in_time_recovery_enabled": null,
+									"start_time":                     "04:30",
+								},
+							],
+							"collation":               null,
+							"database_flags":          [],
+							"disk_autoresize":         true,
+							"disk_autoresize_limit":   0,
+							"disk_type":               "PD_SSD",
+							"insights_config":         [],
+							"maintenance_window":      [],
+							"pricing_plan":            "PER_USE",
+							"sql_server_audit_config": [],
+							"tier": "db-custom-2-13312",
+						},
+					],
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"clone":                  [],
+					"ip_address":             [],
+					"replica_configuration":  [],
+					"restore_backup_context": [],
+					"root_password":          true,
+					"server_ca_cert":         [],
+					"settings": [
+						{
+							"active_directory_config": [],
+							"backup_configuration": [
+								{
+									"backup_retention_settings": [],
+								},
+							],
+							"database_flags":          [],
+							"insights_config":         [],
+							"ip_configuration":        [],
+							"location_preference":     [],
+							"maintenance_window":      [],
+							"sql_server_audit_config": [],
+							"user_labels":             {},
+						},
+					],
+				},
+				"after_unknown": {
+					"clone":                         [],
+					"connection_name":               true,
+					"encryption_key_name":           true,
+					"first_ip_address":              true,
+					"id":                            true,
+					"ip_address":                    true,
+					"master_instance_name":          true,
+					"private_ip_address":            true,
+					"project":                       true,
+					"public_ip_address":             true,
+					"replica_configuration":         true,
+					"restore_backup_context":        [],
+					"self_link":                     true,
+					"server_ca_cert":                true,
+					"service_account_email_address": true,
+					"settings": [
+						{
+							"active_directory_config": [],
+							"backup_configuration": [
+								{
+									"backup_retention_settings":      true,
+									"transaction_log_retention_days": true,
+								},
+							],
+							"database_flags":          [],
+							"disk_size":               true,
+							"insights_config":         [],
+							"ip_configuration":        true,
+							"location_preference":     true,
+							"maintenance_window":      [],
+							"sql_server_audit_config": [],
+							"user_labels":             true,
+							"version":                 true,
+						},
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "main",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_sql_database_instance",
+		},
+	],
+	"terraform_version": "1.3.2",
+	"variables": {
+		"Enabled": {
+			"value": false,
+		},
+		"Region": {
+			"value": "us-central1",
+		},
+		"Tier": {
+			"value": "db-custom-2-13312",
+		},
+		"databaseversion": {
+			"value": "POSTGRES_14",
+		},
+		"gcp_project": {
+			"value": "REDACTED_SENSITIVE",
+		},
+		"rootpassword": {
+			"value": "N8M9so+5cq+ceHam",
+		},
+		"sqlinstancename": {
+			"value": "sqlins",
+		},
+		"starttime": {
+			"value": "04:30",
+		},
+	},
+}
