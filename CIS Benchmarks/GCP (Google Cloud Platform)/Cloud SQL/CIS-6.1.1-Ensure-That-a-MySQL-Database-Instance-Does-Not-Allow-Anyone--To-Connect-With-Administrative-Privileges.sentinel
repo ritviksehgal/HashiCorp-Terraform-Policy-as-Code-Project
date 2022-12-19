@@ -1,0 +1,62 @@
+//For MySQL database instances, this policy ensures that all Database Administrators, SuperUsers, and regular Users have a password associated with every account.
+//This policy only applies to MySQL database instances, MySQL instances do not require you to input a root/admin password with each Admin/ SuperUser account, however it is a best practice to actively use a password for proper authentication and authorization to MySQL database instances.
+//PostgreSQL database instances require users to set a login password on all accounts by default, so this policy does not apply to PostgreSQL instances.
+//MySQL database instances do not require users to set a login password on all accounts by default, so this policy applies only to MySQL instances.
+
+
+import "tfplan/v2" as plan
+
+google_sql_instance = filter plan.resource_changes as _, resource_changes {
+	resource_changes.type is "google_sql_database_instance" and
+		resource_changes.mode is "managed" and
+		(resource_changes.change.actions contains "create" or
+			resource_changes.change.actions is ["update"])
+}
+
+
+allsupported_reuse_interval = [2,3,4,5]
+allsupported_min_length = [5,6,7,8,9,10,11,12,13,14,15]
+
+
+Validate_database_instance_version = rule {
+    all  google_sql_instance as _, resources {
+            resources.change.after.database_version contains "MYSQL"
+        }
+    }
+
+ensure_password_policy_is_enabled = rule when Validate_database_instance_version is true {
+    all  google_sql_instance as _, resources {
+        all resources.change.after.settings as _, settings {
+            all settings.password_validation_policy as _, policy {
+                policy.enable_password_policy is true
+            }
+        }
+    }
+}
+
+
+passwords_are_actively_used_for_authentication_to_MySQL_Instances = rule when ensure_password_policy_is_enabled is true {
+    all google_sql_instance as _, resources {
+        all resources.change.after.settings as settings {
+                all settings.password_validation_policy as policy {
+                        policy.reuse_interval in allsupported_reuse_interval and
+                            policy.min_length in allsupported_min_length
+            }
+        }
+    }
+}
+
+
+
+print("In order to be compliant with this policy, ensure that the values in the 'password_validation_policy' are set correctly. The values are:",
+                                "complexity: Default value is 'null'. However, this value can be changed to 'true' or 'false'. If value is 'true' then the policy will check if the password is a combination of lowercase, uppercase, numeric, and non-alphanumeric characters",
+								"disallow_username_substring: true (This is to say that the password cannot be the same as the username)",
+								"enable_password_policy:  true",
+								"min_length: Must be a number 5, 15, or a number between 5 - 15. (This is to say that the minimum password length for mySQL database Admin, super user, regular user is at least 5 characters)",
+								"password_change_interval: Default value is 'null'. However, this value can be changed to a number to specify how ofter a password must be changed. This is reccommended to increased security.",
+								"reuse_interval: Must be a number 2, 5, or a number between 2 - 5. (This is to say that the mySQL database Admins, super user, regular user must create a password that is not the same as the previous 2 passwords.)")
+
+main = rule {
+Validate_database_instance_version and ensure_password_policy_is_enabled and
+passwords_are_actively_used_for_authentication_to_MySQL_Instances
+}
