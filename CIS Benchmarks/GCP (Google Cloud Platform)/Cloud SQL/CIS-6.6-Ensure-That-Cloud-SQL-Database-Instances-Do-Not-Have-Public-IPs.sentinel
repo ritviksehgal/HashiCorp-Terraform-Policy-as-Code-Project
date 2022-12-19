@@ -1,0 +1,41 @@
+//This policy ensures that Cloud SQL Database Instances Do Not Have Public IPs. In an effort To lower the organization's attack surface, Cloud SQL databases should not have public IPs. Private IPs provide improved network security and lower latency for your application.
+
+
+import "tfplan/v2" as plan
+
+Validate_All_SQL_Instances = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_sql_database_instance" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+deny_if_no_ip_config = rule {
+    all Validate_All_SQL_Instances as _, resources {
+      all resources.change.after.settings as _, settings {
+        settings contains "ip_configuration"
+
+    }
+  }
+}
+
+
+deny_if_private_ip_not_defined = rule {
+    all Validate_All_SQL_Instances as _, resources {
+      all resources.change.after.settings as _, settings {
+        all settings.ip_configuration as _, config {
+          config.ipv4_enabled is false
+
+      }
+    }
+  }
+}
+// rule: ipv4 should be false, this means the instance does not have a public IP address.
+
+
+
+print("Please ensure that 'ipv4_enabled = false' within the resource 'google_sql_database_instance' to ensure the Cloud SQL database does not have a public IP address. This effort will improve network security.")
+
+main = rule {
+deny_if_private_ip_not_defined and deny_if_no_ip_config
+}
