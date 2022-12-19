@@ -1,0 +1,810 @@
+terraform_version = "1.3.3"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"google_compute_global_address.private_ip_address": {
+			"address":        "google_compute_global_address.private_ip_address",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "private_ip_address",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_compute_global_address",
+			"values": {
+				"address_type":  "INTERNAL",
+				"description":   null,
+				"ip_version":    null,
+				"name":          "global-connect-ip",
+				"prefix_length": 16,
+				"purpose":       "VPC_PEERING",
+				"timeouts":      null,
+			},
+		},
+		"google_compute_network.private_network": {
+			"address":        "google_compute_network.private_network",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "private_network",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_compute_network",
+			"values": {
+				"auto_create_subnetworks":         true,
+				"delete_default_routes_on_create": false,
+				"description":                     null,
+				"enable_ula_internal_ipv6":        null,
+				"name":     "vpc-network2",
+				"timeouts": null,
+			},
+		},
+		"google_service_networking_connection.private_vpc_connection": {
+			"address":        "google_service_networking_connection.private_vpc_connection",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "private_vpc_connection",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_service_networking_connection",
+			"values": {
+				"reserved_peering_ranges": [
+					"global-connect-ip",
+				],
+				"service":  "servicenetworking.googleapis.com",
+				"timeouts": null,
+			},
+		},
+		"google_sql_database_instance.default": {
+			"address":        "google_sql_database_instance.default",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "default",
+			"provider_name":  "registry.terraform.io/hashicorp/google",
+			"tainted":        false,
+			"type":           "google_sql_database_instance",
+			"values": {
+				"clone":                  [],
+				"database_version":       "POSTGRES_14",
+				"deletion_protection":    true,
+				"name":                   "test-instance",
+				"region":                 "us-central1",
+				"restore_backup_context": [],
+				"root_password":          "REDACTED_SENSITIVE",
+				"settings": [
+					{
+						"activation_policy":       "ALWAYS",
+						"active_directory_config": [],
+						"availability_type":       "ZONAL",
+						"collation":               null,
+						"database_flags":          [],
+						"disk_autoresize":         true,
+						"disk_autoresize_limit":   0,
+						"disk_type":               "PD_SSD",
+						"insights_config":         [],
+						"ip_configuration": [
+							{
+								"allocated_ip_range":  null,
+								"authorized_networks": [],
+								"ipv4_enabled":        true,
+								"require_ssl":         null,
+							},
+						],
+						"maintenance_window":         [],
+						"password_validation_policy": [],
+						"pricing_plan":               "PER_USE",
+						"sql_server_audit_config":    [],
+						"tier": "db-f1-micro",
+					},
+				],
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"google_compute_global_address.private_ip_address": {
+		"address": "google_compute_global_address.private_ip_address",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"address_type":  "INTERNAL",
+				"description":   null,
+				"ip_version":    null,
+				"name":          "global-connect-ip",
+				"prefix_length": 16,
+				"purpose":       "VPC_PEERING",
+				"timeouts":      null,
+			},
+			"after_unknown": {
+				"address":            true,
+				"creation_timestamp": true,
+				"id":                 true,
+				"network":            true,
+				"project":            true,
+				"self_link":          true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "private_ip_address",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_compute_global_address",
+	},
+	"google_compute_network.private_network": {
+		"address": "google_compute_network.private_network",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"auto_create_subnetworks":         true,
+				"delete_default_routes_on_create": false,
+				"description":                     null,
+				"enable_ula_internal_ipv6":        null,
+				"name":     "vpc-network2",
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"gateway_ipv4": true,
+				"id":           true,
+				"internal_ipv6_range": true,
+				"mtu":          true,
+				"project":      true,
+				"routing_mode": true,
+				"self_link":    true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "private_network",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_compute_network",
+	},
+	"google_service_networking_connection.private_vpc_connection": {
+		"address": "google_service_networking_connection.private_vpc_connection",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"reserved_peering_ranges": [
+					"global-connect-ip",
+				],
+				"service":  "servicenetworking.googleapis.com",
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"id":      true,
+				"network": true,
+				"peering": true,
+				"reserved_peering_ranges": [
+					false,
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "private_vpc_connection",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_service_networking_connection",
+	},
+	"google_sql_database_instance.default": {
+		"address": "google_sql_database_instance.default",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"clone":                  [],
+				"database_version":       "POSTGRES_14",
+				"deletion_protection":    true,
+				"name":                   "test-instance",
+				"region":                 "us-central1",
+				"restore_backup_context": [],
+				"root_password":          "REDACTED_SENSITIVE",
+				"settings": [
+					{
+						"activation_policy":       "ALWAYS",
+						"active_directory_config": [],
+						"availability_type":       "ZONAL",
+						"collation":               null,
+						"database_flags":          [],
+						"disk_autoresize":         true,
+						"disk_autoresize_limit":   0,
+						"disk_type":               "PD_SSD",
+						"insights_config":         [],
+						"ip_configuration": [
+							{
+								"allocated_ip_range":  null,
+								"authorized_networks": [],
+								"ipv4_enabled":        true,
+								"require_ssl":         null,
+							},
+						],
+						"maintenance_window":         [],
+						"password_validation_policy": [],
+						"pricing_plan":               "PER_USE",
+						"sql_server_audit_config":    [],
+						"tier": "db-f1-micro",
+					},
+				],
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"clone":                         [],
+				"connection_name":               true,
+				"encryption_key_name":           true,
+				"first_ip_address":              true,
+				"id":                            true,
+				"ip_address":                    true,
+				"master_instance_name":          true,
+				"private_ip_address":            true,
+				"project":                       true,
+				"public_ip_address":             true,
+				"replica_configuration":         true,
+				"restore_backup_context":        [],
+				"self_link":                     true,
+				"server_ca_cert":                true,
+				"service_account_email_address": true,
+				"settings": [
+					{
+						"active_directory_config": [],
+						"backup_configuration":    true,
+						"database_flags":          [],
+						"disk_size":               true,
+						"insights_config":         [],
+						"ip_configuration": [
+							{
+								"authorized_networks": [],
+								"private_network":     true,
+							},
+						],
+						"location_preference":        true,
+						"maintenance_window":         [],
+						"password_validation_policy": [],
+						"sql_server_audit_config":    [],
+						"user_labels":                true,
+						"version":                    true,
+					},
+				],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "default",
+		"provider_name":  "registry.terraform.io/hashicorp/google",
+		"type":           "google_sql_database_instance",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"google": {
+				"expressions": {
+					"credentials": {
+						"constant_value": "keys.json",
+					},
+					"project": {
+						"constant_value": "formidable-rune-366200",
+					},
+					"region": {
+						"constant_value": "us-east1",
+					},
+					"zone": {
+						"constant_value": "us-east1-b",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/google",
+				"name":               "google",
+				"version_constraint": "4.38.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "google_compute_global_address.private_ip_address",
+					"expressions": {
+						"address_type": {
+							"constant_value": "INTERNAL",
+						},
+						"name": {
+							"constant_value": "global-connect-ip",
+						},
+						"network": {
+							"references": [
+								"google_compute_network.private_network.id",
+								"google_compute_network.private_network",
+							],
+						},
+						"prefix_length": {
+							"constant_value": 16,
+						},
+						"purpose": {
+							"constant_value": "VPC_PEERING",
+						},
+					},
+					"mode":                "managed",
+					"name":                "private_ip_address",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_compute_global_address",
+				},
+				{
+					"address": "google_compute_network.private_network",
+					"expressions": {
+						"auto_create_subnetworks": {
+							"constant_value": true,
+						},
+						"name": {
+							"constant_value": "vpc-network2",
+						},
+					},
+					"mode":                "managed",
+					"name":                "private_network",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_compute_network",
+				},
+				{
+					"address": "google_service_networking_connection.private_vpc_connection",
+					"expressions": {
+						"network": {
+							"references": [
+								"google_compute_network.private_network.id",
+								"google_compute_network.private_network",
+							],
+						},
+						"reserved_peering_ranges": {
+							"references": [
+								"google_compute_global_address.private_ip_address.name",
+								"google_compute_global_address.private_ip_address",
+							],
+						},
+						"service": {
+							"constant_value": "servicenetworking.googleapis.com",
+						},
+					},
+					"mode":                "managed",
+					"name":                "private_vpc_connection",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_service_networking_connection",
+				},
+				{
+					"address": "google_sql_database_instance.default",
+					"depends_on": [
+						"google_service_networking_connection.private_vpc_connection",
+					],
+					"expressions": {
+						"database_version": {
+							"constant_value": "POSTGRES_14",
+						},
+						"name": {
+							"constant_value": "test-instance",
+						},
+						"region": {
+							"constant_value": "us-central1",
+						},
+						"settings": [
+							{
+								"ip_configuration": [
+									{
+										"ipv4_enabled": {
+											"constant_value": true,
+										},
+										"private_network": {
+											"references": [
+												"google_compute_network.private_network.id",
+												"google_compute_network.private_network",
+											],
+										},
+									},
+								],
+								"tier": {
+									"constant_value": "db-f1-micro",
+								},
+							},
+						],
+					},
+					"mode":                "managed",
+					"name":                "default",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_sql_database_instance",
+				},
+			],
+		},
+	},
+	"format_version": "1.1",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":          "google_compute_global_address.private_ip_address",
+					"mode":             "managed",
+					"name":             "private_ip_address",
+					"provider_name":    "registry.terraform.io/hashicorp/google",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "google_compute_global_address",
+					"values": {
+						"address_type":  "INTERNAL",
+						"description":   null,
+						"ip_version":    null,
+						"name":          "global-connect-ip",
+						"prefix_length": 16,
+						"purpose":       "VPC_PEERING",
+						"timeouts":      null,
+					},
+				},
+				{
+					"address":          "google_compute_network.private_network",
+					"mode":             "managed",
+					"name":             "private_network",
+					"provider_name":    "registry.terraform.io/hashicorp/google",
+					"schema_version":   0,
+					"sensitive_values": {},
+					"type":             "google_compute_network",
+					"values": {
+						"auto_create_subnetworks":         true,
+						"delete_default_routes_on_create": false,
+						"description":                     null,
+						"enable_ula_internal_ipv6":        null,
+						"name":     "vpc-network2",
+						"timeouts": null,
+					},
+				},
+				{
+					"address":        "google_service_networking_connection.private_vpc_connection",
+					"mode":           "managed",
+					"name":           "private_vpc_connection",
+					"provider_name":  "registry.terraform.io/hashicorp/google",
+					"schema_version": 0,
+					"sensitive_values": {
+						"reserved_peering_ranges": [
+							false,
+						],
+					},
+					"type": "google_service_networking_connection",
+					"values": {
+						"reserved_peering_ranges": [
+							"global-connect-ip",
+						],
+						"service":  "servicenetworking.googleapis.com",
+						"timeouts": null,
+					},
+				},
+				{
+					"address":        "google_sql_database_instance.default",
+					"mode":           "managed",
+					"name":           "default",
+					"provider_name":  "registry.terraform.io/hashicorp/google",
+					"schema_version": 0,
+					"sensitive_values": {
+						"clone":                  [],
+						"ip_address":             [],
+						"replica_configuration":  [],
+						"restore_backup_context": [],
+						"server_ca_cert":         [],
+						"settings": [
+							{
+								"active_directory_config": [],
+								"backup_configuration":    [],
+								"database_flags":          [],
+								"insights_config":         [],
+								"ip_configuration": [
+									{
+										"authorized_networks": [],
+									},
+								],
+								"location_preference":        [],
+								"maintenance_window":         [],
+								"password_validation_policy": [],
+								"sql_server_audit_config":    [],
+								"user_labels":                {},
+							},
+						],
+					},
+					"type": "google_sql_database_instance",
+					"values": {
+						"clone":                  [],
+						"database_version":       "POSTGRES_14",
+						"deletion_protection":    true,
+						"name":                   "test-instance",
+						"region":                 "us-central1",
+						"restore_backup_context": [],
+						"root_password":          "REDACTED_SENSITIVE",
+						"settings": [
+							{
+								"activation_policy":       "ALWAYS",
+								"active_directory_config": [],
+								"availability_type":       "ZONAL",
+								"collation":               null,
+								"database_flags":          [],
+								"disk_autoresize":         true,
+								"disk_autoresize_limit":   0,
+								"disk_type":               "PD_SSD",
+								"insights_config":         [],
+								"ip_configuration": [
+									{
+										"allocated_ip_range":  null,
+										"authorized_networks": [],
+										"ipv4_enabled":        true,
+										"require_ssl":         null,
+									},
+								],
+								"maintenance_window":         [],
+								"password_validation_policy": [],
+								"pricing_plan":               "PER_USE",
+								"sql_server_audit_config":    [],
+								"tier": "db-f1-micro",
+							},
+						],
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"relevant_attributes": [
+		{
+			"attribute": [
+				"id",
+			],
+			"resource": "google_compute_network.private_network",
+		},
+		{
+			"attribute": [
+				"name",
+			],
+			"resource": "google_compute_global_address.private_ip_address",
+		},
+	],
+	"resource_changes": [
+		{
+			"address": "google_compute_global_address.private_ip_address",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"address_type":  "INTERNAL",
+					"description":   null,
+					"ip_version":    null,
+					"name":          "global-connect-ip",
+					"prefix_length": 16,
+					"purpose":       "VPC_PEERING",
+					"timeouts":      null,
+				},
+				"after_sensitive": {},
+				"after_unknown": {
+					"address":            true,
+					"creation_timestamp": true,
+					"id":                 true,
+					"network":            true,
+					"project":            true,
+					"self_link":          true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "private_ip_address",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_compute_global_address",
+		},
+		{
+			"address": "google_compute_network.private_network",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"auto_create_subnetworks":         true,
+					"delete_default_routes_on_create": false,
+					"description":                     null,
+					"enable_ula_internal_ipv6":        null,
+					"name":     "vpc-network2",
+					"timeouts": null,
+				},
+				"after_sensitive": {},
+				"after_unknown": {
+					"gateway_ipv4": true,
+					"id":           true,
+					"internal_ipv6_range": true,
+					"mtu":          true,
+					"project":      true,
+					"routing_mode": true,
+					"self_link":    true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "private_network",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_compute_network",
+		},
+		{
+			"address": "google_service_networking_connection.private_vpc_connection",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"reserved_peering_ranges": [
+						"global-connect-ip",
+					],
+					"service":  "servicenetworking.googleapis.com",
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"reserved_peering_ranges": [
+						false,
+					],
+				},
+				"after_unknown": {
+					"id":      true,
+					"network": true,
+					"peering": true,
+					"reserved_peering_ranges": [
+						false,
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "private_vpc_connection",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_service_networking_connection",
+		},
+		{
+			"address": "google_sql_database_instance.default",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"clone":                  [],
+					"database_version":       "POSTGRES_14",
+					"deletion_protection":    true,
+					"name":                   "test-instance",
+					"region":                 "us-central1",
+					"restore_backup_context": [],
+					"root_password":          "REDACTED_SENSITIVE",
+					"settings": [
+						{
+							"activation_policy":       "ALWAYS",
+							"active_directory_config": [],
+							"availability_type":       "ZONAL",
+							"collation":               null,
+							"database_flags":          [],
+							"disk_autoresize":         true,
+							"disk_autoresize_limit":   0,
+							"disk_type":               "PD_SSD",
+							"insights_config":         [],
+							"ip_configuration": [
+								{
+									"allocated_ip_range":  null,
+									"authorized_networks": [],
+									"ipv4_enabled":        true,
+									"require_ssl":         null,
+								},
+							],
+							"maintenance_window":         [],
+							"password_validation_policy": [],
+							"pricing_plan":               "PER_USE",
+							"sql_server_audit_config":    [],
+							"tier": "db-f1-micro",
+						},
+					],
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"clone":                  [],
+					"ip_address":             [],
+					"replica_configuration":  [],
+					"restore_backup_context": [],
+					"root_password":          true,
+					"server_ca_cert":         [],
+					"settings": [
+						{
+							"active_directory_config": [],
+							"backup_configuration":    [],
+							"database_flags":          [],
+							"insights_config":         [],
+							"ip_configuration": [
+								{
+									"authorized_networks": [],
+								},
+							],
+							"location_preference":        [],
+							"maintenance_window":         [],
+							"password_validation_policy": [],
+							"sql_server_audit_config":    [],
+							"user_labels":                {},
+						},
+					],
+				},
+				"after_unknown": {
+					"clone":                         [],
+					"connection_name":               true,
+					"encryption_key_name":           true,
+					"first_ip_address":              true,
+					"id":                            true,
+					"ip_address":                    true,
+					"master_instance_name":          true,
+					"private_ip_address":            true,
+					"project":                       true,
+					"public_ip_address":             true,
+					"replica_configuration":         true,
+					"restore_backup_context":        [],
+					"self_link":                     true,
+					"server_ca_cert":                true,
+					"service_account_email_address": true,
+					"settings": [
+						{
+							"active_directory_config": [],
+							"backup_configuration":    true,
+							"database_flags":          [],
+							"disk_size":               true,
+							"insights_config":         [],
+							"ip_configuration": [
+								{
+									"authorized_networks": [],
+									"private_network":     true,
+								},
+							],
+							"location_preference":        true,
+							"maintenance_window":         [],
+							"password_validation_policy": [],
+							"sql_server_audit_config":    [],
+							"user_labels":                true,
+							"version":                    true,
+						},
+					],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "default",
+			"provider_name": "registry.terraform.io/hashicorp/google",
+			"type":          "google_sql_database_instance",
+		},
+	],
+	"terraform_version": "1.3.3",
+}
