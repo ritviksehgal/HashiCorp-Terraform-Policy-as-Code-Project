@@ -1,1 +1,23 @@
+import "tfplan-functions" as plan
+import "strings"
+import "decimal"
 
+
+allowed_rotation = 7776000// less than 90 days (in seconds)
+
+allserviceaccounts = plan.find_resources("google_kms_crypto_key")
+
+violations = 0
+
+for allserviceaccounts as address, rc  {
+  value = plan.evaluate_attribute(rc, "rotation_period")
+  value1 = decimal.new(strings.trim_suffix(value, "s"))
+  if value1.greater_than(allowed_rotation) {
+    violations = 1
+  }
+    
+}
+
+main = rule {
+  violations is 0
+}
