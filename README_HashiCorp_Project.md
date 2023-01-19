@@ -17,7 +17,7 @@ is reduced to the extent possible. HashiCorp Sentinel is a Policy-as-Code (PaC) 
 	
 # About the policies
 
-The following custom policies were developed using the CIS Benchmarks for the Google Cloud Platform. CIS (Center for Internet Security) has created public, open- source documentation detailing best practices and important security considerations when designing an infrastructure on Google Cloud Platform. The latest version was updated March 2022. I used the best practices found in this CIS Benchmarks document to develop custom policies.
+The following custom policies were developed using the CIS Benchmarks for the Google Cloud Platform. CIS (Center for Internet Security) has created public, open- source documentation detailing best practices and important security considerations when designing an infrastructure on Google Cloud Platform. The latest update is dated March 2022 (this is a living document that continues to be updated). I used the best practices found in this CIS Benchmarks document to develop custom policies.
 
 The custom policies in this repository are numbered and correspond to the policy documentation in the CIS benchmarks for Google Cloud.
 
