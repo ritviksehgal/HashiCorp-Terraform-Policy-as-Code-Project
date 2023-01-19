@@ -1,0 +1,111 @@
+/*This policy ensures that the latest security /updates patches as well as critical operating system updates are installed on all virtual machines for all projects.
+Keeping an operating system up to date is the best way to secure against ever evolving known vulnerabilities and bugs in programs that can be used in cyber attacks by bad actors.
+The latest security patches and critical operating system updates are deployed on the first Tuesday of every month at 12:00 AM EST
+To ensure minimal downtime, 1 VM per avalibility zone will update at a time
+Note: This patch management policy does not apply to Managed instance groups (MIGs).*/
+
+
+import "tfplan/v2" as plan
+import "tfplan-functions" as plan1
+
+Validate_ssl_proxy = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_compute_target_ssl_proxy" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+Validate_ssl_policy = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_compute_ssl_policy" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+
+Validate_https_proxy = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "google_compute_target_https_proxy" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+
+deny_undifined_ssl_policy_in_https_proxy = rule {
+	        all Validate_https_proxy as _, resources {
+                all resources.change.after_unknown as _, after {
+                resources.change.after_unknown.ssl_policy is true
+        }
+    }
+}
+
+
+deny_undifined_ssl_policy_in_ssl_proxy = rule {
+	        all Validate_ssl_proxy as _, resources {
+                all resources.change.after_unknown as _, after {
+                    resources.change.after_unknown contains "ssl_policy" and
+                        resources.change.after_unknown.ssl_policy is true
+        }
+    }
+}
+
+Ensure_min_TLS_version = rule {
+	        all Validate_ssl_policy as _, resources {
+                all resources.change.after as _, after {
+                    resources.change.after contains "min_tls_version" and
+                        resources.change.after.min_tls_version is "TLS_1_2"
+        }
+    }
+}
+
+    deny_custom_features = [
+"TLS_RSA_WITH_AES_128_GCM_SHA256",
+"TLS_RSA_WITH_AES_256_GCM_SHA384",
+"TLS_RSA_WITH_AES_128_CBC_SHA",
+"TLS_RSA_WITH_AES_256_CBC_SHA",
+"TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+]
+
+    allowed_profiles = [
+"MODERN",
+"RESTRICTED",
+]
+
+
+
+SSL_profile_is_not_custom = rule {
+	all Validate_ssl_policy as _, resources {
+        all resources.change.after as _, after {
+             resources.change.after.profile in allowed_profiles
+                
+            
+             
+            }
+        }
+    }
+
+    SSL_profile_is_custom = plan1.filter_attribute_contains_items_from_list(Validate_ssl_policy,"custom_features",deny_custom_features,true)
+    violations = length(SSL_profile_is_custom["messages"])
+
+
+
+
+
+
+
+
+
+main = rule {
+ ( violations is 0 or SSL_profile_is_not_custom) and
+ deny_undifined_ssl_policy_in_https_proxy and
+ deny_undifined_ssl_policy_in_ssl_proxy and
+ Ensure_min_TLS_version
+}
+
+
+/*main = rule {
+ ( violations is 0 or SSL_profile_is_not_custom) and
+ deny_undifined_ssl_policy_in_https_proxy and
+ deny_undifined_ssl_policy_in_ssl_proxy and
+ Ensure_min_TLS_version
+}*/
