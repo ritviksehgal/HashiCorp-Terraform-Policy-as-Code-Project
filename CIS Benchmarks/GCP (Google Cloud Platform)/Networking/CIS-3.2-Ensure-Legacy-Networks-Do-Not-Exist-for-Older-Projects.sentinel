@@ -1,0 +1,39 @@
+// This policy is to ensure that legacy networks are not present in the Cloud environment.
+// Subnets should be present in all networks, routers should not advertise routes across all regions.
+// Refer to the CIS benchmarks for Google Cloud version 1.3, policy 3.2
+
+
+import "tfplan/v2" as plan
+
+check_for_legacy_networks = filter plan.resource_changes as _, resource_changes {
+	resource_changes.type is "google_compute_network" and
+		resource_changes.mode is "managed" and
+		(resource_changes.change.actions contains "create" or
+			resource_changes.change.actions is ["update"])
+}
+
+validate_modern_subnetworks = rule {
+	all check_for_legacy_networks as _, resources {
+		all resources.change.after as _, after {
+			resources.change.after contains "auto_create_subnetworks" and
+				resources.change.after.auto_create_subnetworks is true
+
+		}
+	}
+}
+
+validate_modern_routing = rule {
+	all check_for_legacy_networks as _, resources {
+		resources.change.after.routing_mode is "REGIONAL"
+
+		}
+	}
+
+
+	print("Ensure no legacy networks are present. Subnets and proper network segmentation should be present in all networks, 'auto_create_subnetworks' should be 'true'.",
+	"Routing mode should be 'REGIONAL' (in capital letters), it is a best practice to ensure that cloud routers are advertising route tables only in the same avalibility zone (ex: us-east1-b) as the router (REGIONAL)")
+
+main = rule {
+
+	validate_modern_subnetworks and validate_modern_routing
+}
