@@ -71,41 +71,29 @@ Ensure_min_TLS_version = rule {
 "RESTRICTED",
 ]
 
+ 
+ 
+Custom_does_not_have_insecure_attributes = plan1.filter_attribute_contains_items_from_list(Validate_ssl_policy,"custom_features",deny_custom_features,true)
+    violations = length(Custom_does_not_have_insecure_attributes["messages"])
+    
+    
 
-
-SSL_profile_is_not_custom = rule {
+Non_custom_secure_profiles = rule {
 	all Validate_ssl_policy as _, resources {
-        all resources.change.after as _, after {
-             resources.change.after.profile in allowed_profiles
+        	all resources.change.after as _, after {
+             		resources.change.after.profile in allowed_profiles
                 
             
              
-            }
-        }
-    }
-
-    SSL_profile_is_custom = plan1.filter_attribute_contains_items_from_list(Validate_ssl_policy,"custom_features",deny_custom_features,true)
-    violations = length(SSL_profile_is_custom["messages"])
-
-
-
-
-
-
+		}
+	}
+}   
 
 
 
 main = rule {
- ( violations is 0 or SSL_profile_is_not_custom) and
+ (violations is 0 or Non_custom_secure_profiles) and
  deny_undifined_ssl_policy_in_https_proxy and
  deny_undifined_ssl_policy_in_ssl_proxy and
  Ensure_min_TLS_version
 }
-
-
-/*main = rule {
- ( violations is 0 or SSL_profile_is_not_custom) and
- deny_undifined_ssl_policy_in_https_proxy and
- deny_undifined_ssl_policy_in_ssl_proxy and
- Ensure_min_TLS_version
-}*/
