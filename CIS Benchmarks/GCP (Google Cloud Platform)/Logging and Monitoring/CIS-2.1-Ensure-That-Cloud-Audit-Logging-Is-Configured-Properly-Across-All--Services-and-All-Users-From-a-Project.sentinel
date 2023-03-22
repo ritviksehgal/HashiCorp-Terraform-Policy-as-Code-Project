@@ -10,6 +10,7 @@
 
 
 import "tfplan/v2" as plan
+//import "tfplan-functions" as plan1
 
 project_iam_audit = filter plan.resource_changes as _, resource_changes {
     resource_changes.type is "google_project_iam_audit_config" and
@@ -19,23 +20,48 @@ project_iam_audit = filter plan.resource_changes as _, resource_changes {
 }
 
 deny_undefined = rule {
-all project_iam_audit as _, resources {
-    resources.change.after contains "audit_log_config"
+	all project_iam_audit as _, resources {
+		resources.change.after contains "audit_log_config"
     }
 }
 
 
-project_iam_value_1 = rule {
-	        all project_iam_audit as _, resources {
-                all resources.change.after.audit_log_config as _, config {
-                        config.log_type contains "DATA_READ" and
-                            config.log_type contains "ADMIN_READ" and
-                                config.log_type contains "DATA_WRITE"
+Audit_logging_for_user_reads = rule {
+	all project_iam_audit as _, resources {
+        	all resources.change.after as _, after {
+        	resources.change.after.audit_log_config[0].log_type contains "DATA_READ" or
+                	resources.change.after.audit_log_config[1].log_type contains "DATA_READ" or 
+                		resources.change.after.audit_log_config[2].log_type contains "DATA_READ"
+			    
         }
     }
 }
 
-project_iam_value_2 = rule when project_iam_value_1 is true {
+
+
+Audit_logging_for_user_writes = rule {
+	all project_iam_audit as _, resources {
+		all resources.change.after as _, after {
+                	resources.change.after.audit_log_config[0].log_type contains "DATA_WRITE" or
+                		resources.change.after.audit_log_config[1].log_type contains "DATA_WRITE" or 
+                			resources.change.after.audit_log_config[2].log_type contains "DATA_WRITE"
+			    
+        }
+    }
+}
+
+
+Audit_logging_for_admin_activity = rule {
+	all project_iam_audit as _, resources {
+        	all resources.change.after as _, after {
+                	resources.change.after.audit_log_config[0].log_type contains "ADMIN_READ" or
+				resources.change.after.audit_log_config[1].log_type contains "ADMIN_READ" or
+					resources.change.after.audit_log_config[2].log_type contains "ADMIN_READ"
+		}			
+	}
+}
+
+no_users_are_exempted_from_policy = rule {
             all project_iam_audit as _, resources {
                 all resources.change.after.audit_log_config as _, config {
                         config.exempted_members is []
@@ -43,14 +69,13 @@ project_iam_value_2 = rule when project_iam_value_1 is true {
         }
     }
 
-project_iam_value_3 = rule {
-	        all project_iam_audit as _, resources {
-                all resources.change.after as _, after {
-                resources.change.after.service is "allServices"
+Audit_logging_on_all_services = rule {
+	all project_iam_audit as _, resources {
+        	all resources.change.after as _, after {
+                	resources.change.after.service is "allServices"
             }
      }
 }
-
 
 
 print("If this policy fails, ensure that a 'log_type' is specified for ADMIN_READ, DATA_READ, and DATA_WRITE. Ensure that there are no exempted members, all users and groups must be subjected to the policy. Log_type and exempted_members should be specified three times for each 'iam_audit_config' resource. Please refer to CIS for Google Cloud v1.3, policy 2.1")
@@ -58,7 +83,9 @@ print("If this policy fails, ensure that a 'log_type' is specified for ADMIN_REA
 
  main = rule {
 deny_undefined and 
-project_iam_value_1 and
-project_iam_value_2 and
-project_iam_value_3
+Audit_logging_for_user_reads and
+Audit_logging_for_user_writes and
+Audit_logging_for_admin_activity and
+Audit_logging_on_all_services and
+no_users_are_exempted_from_policy
 }
