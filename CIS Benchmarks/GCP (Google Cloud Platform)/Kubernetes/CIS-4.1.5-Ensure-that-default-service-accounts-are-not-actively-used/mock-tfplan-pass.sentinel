@@ -1,0 +1,827 @@
+terraform_version = "1.2.9"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"kubernetes_default_service_account.example": {
+			"address":        "kubernetes_default_service_account.example",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "example",
+			"provider_name":  "registry.terraform.io/hashicorp/kubernetes",
+			"tainted":        false,
+			"type":           "kubernetes_default_service_account",
+			"values": {
+				"automount_service_account_token": false,
+				"image_pull_secret":               [],
+				"metadata": [
+					{
+						"annotations": null,
+						"labels":      null,
+						"name":        "default",
+						"namespace":   "terraform-example",
+					},
+				],
+				"secret":   [],
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {}
+
+resource_changes = {
+	"kubernetes_default_service_account.example": {
+		"address": "kubernetes_default_service_account.example",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"automount_service_account_token": false,
+				"image_pull_secret":               [],
+				"metadata": [
+					{
+						"annotations": null,
+						"labels":      null,
+						"name":        "default",
+						"namespace":   "terraform-example",
+					},
+				],
+				"secret":   [],
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"default_secret_name": true,
+				"id":                true,
+				"image_pull_secret": [],
+				"metadata": [
+					{
+						"generation":       true,
+						"resource_version": true,
+						"uid":              true,
+					},
+				],
+				"secret": [],
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "example",
+		"provider_name":  "registry.terraform.io/hashicorp/kubernetes",
+		"type":           "kubernetes_default_service_account",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"google": {
+				"expressions": {
+					"credentials": {
+						"constant_value": "keys.json",
+					},
+					"project": {
+						"constant_value": "daring-bit-365423",
+					},
+					"region": {
+						"constant_value": "us-east1",
+					},
+					"zone": {
+						"constant_value": "us-east1-b",
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/google",
+				"name":               "google",
+				"version_constraint": "4.38.0",
+			},
+			"kubernetes": {
+				"expressions": {
+					"host": {
+						"constant_value": "http://34.66.160.91",
+					},
+					"token": {
+						"references": [
+							"data.google_client_config.provider.access_token",
+							"data.google_client_config.provider",
+						],
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/kubernetes",
+				"name":      "kubernetes",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "kubernetes_default_service_account.example",
+					"expressions": {
+						"automount_service_account_token": {
+							"constant_value": false,
+						},
+						"metadata": [
+							{
+								"namespace": {
+									"constant_value": "terraform-example",
+								},
+							},
+						],
+					},
+					"mode":                "managed",
+					"name":                "example",
+					"provider_config_key": "kubernetes",
+					"schema_version":      0,
+					"type":                "kubernetes_default_service_account",
+				},
+				{
+					"address":             "data.google_client_config.provider",
+					"mode":                "data",
+					"name":                "provider",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_client_config",
+				},
+				{
+					"address": "data.google_container_cluster.my_cluster",
+					"expressions": {
+						"location": {
+							"constant_value": "us-central1",
+						},
+						"name": {
+							"constant_value": "my-cluster",
+						},
+					},
+					"mode":                "data",
+					"name":                "my_cluster",
+					"provider_config_key": "google",
+					"schema_version":      0,
+					"type":                "google_container_cluster",
+				},
+			],
+		},
+	},
+	"format_version": "1.1",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "kubernetes_default_service_account.example",
+					"mode":           "managed",
+					"name":           "example",
+					"provider_name":  "registry.terraform.io/hashicorp/kubernetes",
+					"schema_version": 0,
+					"sensitive_values": {
+						"image_pull_secret": [],
+						"metadata": [
+							{},
+						],
+						"secret": [],
+					},
+					"type": "kubernetes_default_service_account",
+					"values": {
+						"automount_service_account_token": false,
+						"image_pull_secret":               [],
+						"metadata": [
+							{
+								"annotations": null,
+								"labels":      null,
+								"name":        "default",
+								"namespace":   "terraform-example",
+							},
+						],
+						"secret":   [],
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"prior_state": {
+		"format_version":    "1.0",
+		"terraform_version": "1.2.9",
+		"values": {
+			"root_module": {
+				"resources": [
+					{
+						"address":          "data.google_client_config.provider",
+						"mode":             "data",
+						"name":             "provider",
+						"provider_name":    "registry.terraform.io/hashicorp/google",
+						"schema_version":   0,
+						"sensitive_values": {},
+						"type":             "google_client_config",
+						"values": {
+							"access_token": "ya29.c.b0AUFJQsGSyNG9mdwPQI6-PZf23iwIOgqF_JUpeYepyanaSHYvYKP60KqVYeKnW_W1NkkgFIhcf4vA_Y2ZiyFRk0XlNwgv1l1KRvqH7_00HIg1Gl3X6jSnq9k95PJdOF_D5n4dC0aTG9lBSM0xyFZ6Ua1g9OsWMH3axuzhQIc36qF077qUSXo88dOzq-nfmLpYDZLGWKEi6ZS72PQeE1715Dg1zEXhSnFR.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................",
+							"id":           "projects/daring-bit-365423/regions/us-east1/zones/us-east1-b",
+							"project":      "daring-bit-365423",
+							"region":       "us-east1",
+							"zone":         "us-east1-b",
+						},
+					},
+					{
+						"address":        "data.google_container_cluster.my_cluster",
+						"mode":           "data",
+						"name":           "my_cluster",
+						"provider_name":  "registry.terraform.io/hashicorp/google",
+						"schema_version": 0,
+						"sensitive_values": {
+							"addons_config": [
+								{
+									"cloudrun_config": [],
+									"dns_cache_config": [
+										{},
+									],
+									"gce_persistent_disk_csi_driver_config": [
+										{},
+									],
+									"gcp_filestore_csi_driver_config": [
+										{},
+									],
+									"horizontal_pod_autoscaling": [
+										{},
+									],
+									"http_load_balancing": [
+										{},
+									],
+									"network_policy_config": [
+										{},
+									],
+								},
+							],
+							"authenticator_groups_config": [
+								{},
+							],
+							"binary_authorization": [
+								{},
+							],
+							"cluster_autoscaling": [
+								{
+									"auto_provisioning_defaults": [
+										{
+											"oauth_scopes": [
+												false,
+												false,
+												false,
+												false,
+												false,
+												false,
+											],
+										},
+									],
+									"resource_limits": [
+										{},
+										{},
+										{},
+										{},
+									],
+								},
+							],
+							"confidential_nodes": [],
+							"database_encryption": [
+								{},
+							],
+							"default_snat_status": [
+								{},
+							],
+							"dns_config": [],
+							"ip_allocation_policy": [
+								{},
+							],
+							"logging_config": [
+								{
+									"enable_components": [
+										false,
+										false,
+									],
+								},
+							],
+							"maintenance_policy": [],
+							"master_auth": [
+								{
+									"client_certificate_config": [
+										{},
+									],
+								},
+							],
+							"master_authorized_networks_config": [],
+							"mesh_certificates":                 [],
+							"monitoring_config": [
+								{
+									"enable_components": [
+										false,
+									],
+								},
+							],
+							"network_policy": [
+								{},
+							],
+							"node_config": [
+								{
+									"gcfs_config":       [],
+									"guest_accelerator": [],
+									"gvnic":             [],
+									"labels":            {},
+									"metadata":          {},
+									"oauth_scopes": [
+										false,
+										false,
+										false,
+										false,
+										false,
+										false,
+									],
+									"reservation_affinity": [],
+									"shielded_instance_config": [
+										{},
+									],
+									"tags":  [],
+									"taint": [],
+									"workload_metadata_config": [
+										{},
+									],
+								},
+							],
+							"node_locations": [
+								false,
+								false,
+								false,
+								false,
+							],
+							"node_pool": [
+								{
+									"autoscaling": [
+										{},
+									],
+									"instance_group_urls":         [],
+									"managed_instance_group_urls": [],
+									"management": [
+										{},
+									],
+									"node_config": [
+										{
+											"gcfs_config":       [],
+											"guest_accelerator": [],
+											"gvnic":             [],
+											"labels":            {},
+											"metadata":          {},
+											"oauth_scopes": [
+												false,
+												false,
+												false,
+												false,
+												false,
+												false,
+											],
+											"reservation_affinity": [],
+											"shielded_instance_config": [
+												{},
+											],
+											"tags":  [],
+											"taint": [],
+											"workload_metadata_config": [
+												{},
+											],
+										},
+									],
+									"node_locations": [
+										false,
+										false,
+									],
+									"upgrade_settings": [
+										{},
+									],
+								},
+							],
+							"notification_config": [
+								{
+									"pubsub": [
+										{},
+									],
+								},
+							],
+							"private_cluster_config": [],
+							"release_channel": [
+								{},
+							],
+							"resource_labels":              {},
+							"resource_usage_export_config": [],
+							"service_external_ips_config": [
+								{},
+							],
+							"vertical_pod_autoscaling": [
+								{},
+							],
+							"workload_identity_config": [
+								{},
+							],
+						},
+						"type": "google_container_cluster",
+						"values": {
+							"addons_config": [
+								{
+									"cloudrun_config": [],
+									"dns_cache_config": [
+										{
+											"enabled": true,
+										},
+									],
+									"gce_persistent_disk_csi_driver_config": [
+										{
+											"enabled": true,
+										},
+									],
+									"gcp_filestore_csi_driver_config": [
+										{
+											"enabled": true,
+										},
+									],
+									"horizontal_pod_autoscaling": [
+										{
+											"disabled": false,
+										},
+									],
+									"http_load_balancing": [
+										{
+											"disabled": false,
+										},
+									],
+									"network_policy_config": [
+										{
+											"disabled": true,
+										},
+									],
+								},
+							],
+							"authenticator_groups_config": [
+								{
+									"security_group": "",
+								},
+							],
+							"binary_authorization": [
+								{
+									"enabled":         false,
+									"evaluation_mode": "DISABLED",
+								},
+							],
+							"cluster_autoscaling": [
+								{
+									"auto_provisioning_defaults": [
+										{
+											"boot_disk_kms_key": "",
+											"image_type":        "COS_CONTAINERD",
+											"oauth_scopes": [
+												"https://www.googleapis.com/auth/devstorage.read_only",
+												"https://www.googleapis.com/auth/logging.write",
+												"https://www.googleapis.com/auth/monitoring",
+												"https://www.googleapis.com/auth/service.management.readonly",
+												"https://www.googleapis.com/auth/servicecontrol",
+												"https://www.googleapis.com/auth/trace.append",
+											],
+											"service_account": "default",
+										},
+									],
+									"enabled": true,
+									"resource_limits": [
+										{
+											"maximum":       1000000000,
+											"minimum":       0,
+											"resource_type": "cpu",
+										},
+										{
+											"maximum":       1000000000,
+											"minimum":       0,
+											"resource_type": "memory",
+										},
+										{
+											"maximum":       1000000000,
+											"minimum":       0,
+											"resource_type": "nvidia-tesla-t4",
+										},
+										{
+											"maximum":       1000000000,
+											"minimum":       0,
+											"resource_type": "nvidia-tesla-a100",
+										},
+									],
+								},
+							],
+							"cluster_ipv4_cidr":  "10.61.128.0/17",
+							"confidential_nodes": [],
+							"database_encryption": [
+								{
+									"key_name": "",
+									"state":    "DECRYPTED",
+								},
+							],
+							"datapath_provider":         "ADVANCED_DATAPATH",
+							"default_max_pods_per_node": 110,
+							"default_snat_status": [
+								{
+									"disabled": false,
+								},
+							],
+							"description":                 "",
+							"dns_config":                  [],
+							"enable_autopilot":            true,
+							"enable_binary_authorization": false,
+							"enable_intranode_visibility": true,
+							"enable_kubernetes_alpha":     false,
+							"enable_legacy_abac":          false,
+							"enable_shielded_nodes":       true,
+							"enable_tpu":                  false,
+							"endpoint":                    "34.66.160.91",
+							"id":                          "projects/daring-bit-365423/locations/us-central1/clusters/my-cluster",
+							"initial_node_count":          0,
+							"ip_allocation_policy": [
+								{
+									"cluster_ipv4_cidr_block":       "10.61.128.0/17",
+									"cluster_secondary_range_name":  "gke-my-cluster-pods-d277a6dc",
+									"services_ipv4_cidr_block":      "10.62.0.0/22",
+									"services_secondary_range_name": "gke-my-cluster-services-d277a6dc",
+								},
+							],
+							"label_fingerprint": "a9dc16a7",
+							"location":          "us-central1",
+							"logging_config": [
+								{
+									"enable_components": [
+										"SYSTEM_COMPONENTS",
+										"WORKLOADS",
+									],
+								},
+							],
+							"logging_service":    "logging.googleapis.com/kubernetes",
+							"maintenance_policy": [],
+							"master_auth": [
+								{
+									"client_certificate": "",
+									"client_certificate_config": [
+										{
+											"issue_client_certificate": false,
+										},
+									],
+									"client_key":             "",
+									"cluster_ca_certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVMVENDQXBXZ0F3SUJBZ0lSQUt3bCtodS9aOThXTTFQclVGeWh3SlV3RFFZSktvWklodmNOQVFFTEJRQXcKTHpFdE1Dc0dBMVVFQXhNa1lUSmxNVEJpWkRBdE5URmlNeTAwT0RBeUxUa3dNR0V0TWpka05ETTFZMlkxTldGagpNQ0FYRFRJeU1UQXlNekl5TkRVd01Wb1lEekl3TlRJeE1ERTFNak0wTlRBeFdqQXZNUzB3S3dZRFZRUURFeVJoCk1tVXhNR0prTUMwMU1XSXpMVFE0TURJdE9UQXdZUzB5TjJRME16VmpaalUxWVdNd2dnR2lNQTBHQ1NxR1NJYjMKRFFFQkFRVUFBNElCandBd2dnR0tBb0lCZ1FDTDBqWSsxL3BvTGMvU3BxYk8yVzl1S3QvYnI5cnRQVlZGeERWUQo5R3FXamxhMGdhdmNzdnptbTZvOUlYVit4MEducHJSdi8vQkdqV0F3aDVrL2hSVUFrN0RLNHNFeVozMk1wQWdGCjFuWW55NU5Mclp4TDkrdmFCbkZPc2lGdW5jc0FqRWY1QkpXVzFWTW16UGVnSW9hR0FjZUN3OEVlYkNSaisya1AKWHRmTVVIcmE3Q0RGOVJVS2lEajRPZUtpUEtTMkxoL3poZ0NobFNqQmQveE5TU3ZYUjY5WklyaGZRU0xBUDFkcwpRUGlUNjlwckF5S25PSUlENEREZDdEMldmMkgwd3ZPZjNzem54dzljN2EwNWNVeEs3b3d4S25WWC9vZlV1YnNCCmpISElRK0hDWXR3ZnhCUjMvNklib2Mwc2ZLQW01NFNIbng5K24yKzc4dk9tSENxWkZhdHNMZFhZK2lQcGdCRWoKWHdWUmFOMEtNWkhSSWlid2RMbGlKWkhPUzRZS1kzSExkazI3WWl6Y2cyK2tJYUZoU0U5L3JaZXNERCtWejIzQwpabUZ4MGRPZWdYSDArT2V1TTB2Ym9JVWo5cDNXSitjdDV0ZzRzRWY2QkNvenJXb1VKbnlkTzRzeEhuaHpaZ0ZXCkhhRHp1NGFOaStsbDAvOStVUFVmbk1Bblo3c0NBd0VBQWFOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1BOEcKQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUVGUENjVUJBYjdXNFM0cUptbDdQbzYxK2NLTCtXTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQmdRQnptRkZDVUR3MVhmdmNYaldXYUxDeTlxR1N5U2xKUiswcTlHZEJ2Zk5qCmtWSjhJM1ZodHdTaFlhTDN1dzJBQWhDcHNPcUVQUGhNWWwxKzNsMDhoNXlwTzdJM3ZSY0xOUldKcFdrU3orN2gKVHdoVndMTmE4RzJlL0hKekU3OTVCL0ZEMXc5NmVaR2tSeG1jRUN1MU83RkNaY09PbklIbXcwMndTTFRncWNEMQo3OHBMNW9vcGhFN0JtNk5SbTBHc29OMXZ0RmZSdmZ4YitWamxuSmx6S1ZPWHNtYU5BeGYvaVZEM28wdTkvTEJZCjQxdTFhQkV2NXc1dkhwQ1lQeWRkYTdWQXYwVzhPMWM0MHpUNE9FbGJ2TjN6bmVLdzJac1hZdmo3SFZBM0JMYnUKSWZ0L2VJOTdna3RmaW5Ld2FoeXNKMWhCc1FFeFFQM3F3V1NOd0RLNFBranZLc1ZaSGJJVC8xMkd1YVlRcWJLSwo2cVlZcTM2YUVLcVdsNTBQQ0RRNDQ2eEcyZVc2bExJNmpPU2pvVklHaVVzTVplcXJZMFBhQWIvTXp2UjdFOHNpCnFERFVPRWtvNjBKaldhMEU2TGZzVGRSVWNkS29QYWNiaytJYXBCSlJiSmhWTzZQWU0xVjh4bVUxT3ljUmpKNmoKYTU5MG4reXFPL003OHB5K1lpeThxYk09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K",
+								},
+							],
+							"master_authorized_networks_config": [],
+							"master_version":                    "1.22.12-gke.2300",
+							"mesh_certificates":                 [],
+							"min_master_version":                null,
+							"monitoring_config": [
+								{
+									"enable_components": [
+										"SYSTEM_COMPONENTS",
+									],
+								},
+							],
+							"monitoring_service": "monitoring.googleapis.com/kubernetes",
+							"name":               "my-cluster",
+							"network":            "projects/daring-bit-365423/global/networks/default",
+							"network_policy": [
+								{
+									"enabled":  false,
+									"provider": "PROVIDER_UNSPECIFIED",
+								},
+							],
+							"networking_mode": "VPC_NATIVE",
+							"node_config": [
+								{
+									"boot_disk_kms_key": "",
+									"disk_size_gb":      100,
+									"disk_type":         "pd-standard",
+									"gcfs_config":       [],
+									"guest_accelerator": [],
+									"gvnic":             [],
+									"image_type":        "COS_CONTAINERD",
+									"labels":            {},
+									"local_ssd_count":   0,
+									"machine_type":      "e2-medium",
+									"metadata": {
+										"disable-legacy-endpoints": "true",
+									},
+									"min_cpu_platform": "",
+									"node_group":       "",
+									"oauth_scopes": [
+										"https://www.googleapis.com/auth/devstorage.read_only",
+										"https://www.googleapis.com/auth/logging.write",
+										"https://www.googleapis.com/auth/monitoring",
+										"https://www.googleapis.com/auth/service.management.readonly",
+										"https://www.googleapis.com/auth/servicecontrol",
+										"https://www.googleapis.com/auth/trace.append",
+									],
+									"preemptible":          false,
+									"reservation_affinity": [],
+									"service_account":      "default",
+									"shielded_instance_config": [
+										{
+											"enable_integrity_monitoring": true,
+											"enable_secure_boot":          true,
+										},
+									],
+									"spot":  false,
+									"tags":  [],
+									"taint": [],
+									"workload_metadata_config": [
+										{
+											"mode": "GKE_METADATA",
+										},
+									],
+								},
+							],
+							"node_locations": [
+								"us-central1-a",
+								"us-central1-b",
+								"us-central1-c",
+								"us-central1-f",
+							],
+							"node_pool": [
+								{
+									"autoscaling": [
+										{
+											"location_policy":      "",
+											"max_node_count":       1000,
+											"min_node_count":       0,
+											"total_max_node_count": 0,
+											"total_min_node_count": 0,
+										},
+									],
+									"initial_node_count":          1,
+									"instance_group_urls":         [],
+									"managed_instance_group_urls": [],
+									"management": [
+										{
+											"auto_repair":  true,
+											"auto_upgrade": true,
+										},
+									],
+									"max_pods_per_node": 32,
+									"name":              "default-pool",
+									"name_prefix":       "",
+									"node_config": [
+										{
+											"boot_disk_kms_key": "",
+											"disk_size_gb":      100,
+											"disk_type":         "pd-standard",
+											"gcfs_config":       [],
+											"guest_accelerator": [],
+											"gvnic":             [],
+											"image_type":        "COS_CONTAINERD",
+											"labels":            {},
+											"local_ssd_count":   0,
+											"machine_type":      "e2-medium",
+											"metadata": {
+												"disable-legacy-endpoints": "true",
+											},
+											"min_cpu_platform": "",
+											"node_group":       "",
+											"oauth_scopes": [
+												"https://www.googleapis.com/auth/devstorage.read_only",
+												"https://www.googleapis.com/auth/logging.write",
+												"https://www.googleapis.com/auth/monitoring",
+												"https://www.googleapis.com/auth/service.management.readonly",
+												"https://www.googleapis.com/auth/servicecontrol",
+												"https://www.googleapis.com/auth/trace.append",
+											],
+											"preemptible":          false,
+											"reservation_affinity": [],
+											"service_account":      "default",
+											"shielded_instance_config": [
+												{
+													"enable_integrity_monitoring": true,
+													"enable_secure_boot":          true,
+												},
+											],
+											"spot":  false,
+											"tags":  [],
+											"taint": [],
+											"workload_metadata_config": [
+												{
+													"mode": "GKE_METADATA",
+												},
+											],
+										},
+									],
+									"node_count": 0,
+									"node_locations": [
+										"us-central1-c",
+										"us-central1-f",
+									],
+									"upgrade_settings": [
+										{
+											"max_surge":       1,
+											"max_unavailable": 0,
+										},
+									],
+									"version": "1.22.12-gke.2300",
+								},
+							],
+							"node_version": "1.22.12-gke.2300",
+							"notification_config": [
+								{
+									"pubsub": [
+										{
+											"enabled": false,
+											"topic":   "",
+										},
+									],
+								},
+							],
+							"operation":                  null,
+							"private_cluster_config":     [],
+							"private_ipv6_google_access": "",
+							"project":                    "daring-bit-365423",
+							"release_channel": [
+								{
+									"channel": "REGULAR",
+								},
+							],
+							"remove_default_node_pool":     null,
+							"resource_labels":              {},
+							"resource_usage_export_config": [],
+							"self_link":                    "https://container.googleapis.com/v1/projects/daring-bit-365423/locations/us-central1/clusters/my-cluster",
+							"service_external_ips_config": [
+								{
+									"enabled": false,
+								},
+							],
+							"services_ipv4_cidr":  "10.62.0.0/22",
+							"subnetwork":          "projects/daring-bit-365423/regions/us-central1/subnetworks/default",
+							"tpu_ipv4_cidr_block": "",
+							"vertical_pod_autoscaling": [
+								{
+									"enabled": true,
+								},
+							],
+							"workload_identity_config": [
+								{
+									"workload_pool": "daring-bit-365423.svc.id.goog",
+								},
+							],
+						},
+					},
+				],
+			},
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "kubernetes_default_service_account.example",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"automount_service_account_token": false,
+					"image_pull_secret":               [],
+					"metadata": [
+						{
+							"annotations": null,
+							"labels":      null,
+							"name":        "default",
+							"namespace":   "terraform-example",
+						},
+					],
+					"secret":   [],
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"image_pull_secret": [],
+					"metadata": [
+						{},
+					],
+					"secret": [],
+				},
+				"after_unknown": {
+					"default_secret_name": true,
+					"id":                true,
+					"image_pull_secret": [],
+					"metadata": [
+						{
+							"generation":       true,
+							"resource_version": true,
+							"uid":              true,
+						},
+					],
+					"secret": [],
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "example",
+			"provider_name": "registry.terraform.io/hashicorp/kubernetes",
+			"type":          "kubernetes_default_service_account",
+		},
+	],
+	"terraform_version": "1.2.9",
+}
