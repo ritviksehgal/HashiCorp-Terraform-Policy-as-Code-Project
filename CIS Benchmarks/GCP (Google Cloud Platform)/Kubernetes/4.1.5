@@ -1,1 +1,36 @@
+//When you create a pod (using Kubernetes), if you do not specify a service account, the pod is automatically assigned a Kubernetes default service account (Kubernetes- managed resource via Kubernetes API) in the same namespace.
+//All workloads which require access to the Kubernetes API will require an explicit service account to be created.
 
+import "tfplan/v2" as plan
+
+Default_Kube_Sevice_accounts = filter plan.resource_changes as _, resource_changes {
+    resource_changes.type is "kubernetes_default_service_account" and
+        resource_changes.mode is "managed" and
+        (resource_changes.change.actions is ["create"] or
+            resource_changes.change.actions is ["update"])
+}
+
+default_kube_serv_accounts_are_not_used = rule {
+	all Default_Kube_Sevice_accounts as _, resources {
+    		all resources.change.after as _, after {
+			keys(resources.change.after) contains "automount_service_account_token" and
+          			resources.change.after.automount_service_account_token is false
+	    }
+    }
+}
+
+
+//The default service account should not be used to ensure that rights granted to applications can be more easily audited and reviewed. For this reason, it is a best practice to ensure that 'automount_service_account_token' is false
+//Where access to the Kubernetes API from a pod is required, a specific service account should be created for that pod, and rights granted to that service account.
+//This policy will ensure that the default Kubernetes service account will not be used to perform operations on kubernetes cluster workloads.
+
+
+if default_kube_serv_accounts_are_not_used is false {
+print("Create an explicit service account when a Kubernetes workload requires specific access to the, ",
+"Kubernetes API server. Do not use the default service account.")
+
+}
+
+main = rule {
+default_kube_serv_accounts_are_not_used
+}
