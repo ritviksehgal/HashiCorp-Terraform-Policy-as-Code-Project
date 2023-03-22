@@ -28,8 +28,8 @@ all project_iam_audit as _, resources {
 project_iam_value_1 = rule {
 	        all project_iam_audit as _, resources {
                 all resources.change.after.audit_log_config as _, config {
-                        config.log_type contains "DATA_READ" or
-                            config.log_type contains "ADMIN_READ" or
+                        config.log_type contains "DATA_READ" and
+                            config.log_type contains "ADMIN_READ" and
                                 config.log_type contains "DATA_WRITE"
         }
     }
@@ -51,35 +51,7 @@ project_iam_value_3 = rule {
      }
 }
 
-project_iam_value_4 = rule {
-all project_iam_audit as _, resources {
-	all resources.change.after as _, after {
-        	resources.change.after.audit_log_config[0].log_type contains "DATA_READ" or
-                	resources.change.after.audit_log_config[0].log_type contains "ADMIN_READ" or 
-                		resources.change.after.audit_log_config[0].log_type contains "DATA_WRITE"
-            }
-     }
-}
 
-project_iam_value_5 = rule when project_iam_value_1 is true {
-	all project_iam_audit as _, resources {
-		all resources.change.after as _, after {
-                	resources.change.after.audit_log_config[1].log_type contains "DATA_READ" or
-                		resources.change.after.audit_log_config[1].log_type contains "ADMIN_READ" or 
-                			resources.change.after.audit_log_config[1].log_type contains "DATA_WRITE"
-            }
-     }
-}
-
-project_iam_value_6 = rule when project_iam_value_1 is true {
-	all project_iam_audit as _, resources {
-		all resources.change.after as _, after {
-                	resources.change.after.audit_log_config[2].log_type contains "DATA_READ" or
-                		resources.change.after.audit_log_config[2].log_type contains "ADMIN_READ" or 
-                			resources.change.after.audit_log_config[2].log_type contains "DATA_WRITE"
-            }
-     }
-}
 
 print("If this policy fails, ensure that a 'log_type' is specified for ADMIN_READ, DATA_READ, and DATA_WRITE. Ensure that there are no exempted members, all users and groups must be subjected to the policy. Log_type and exempted_members should be specified three times for each 'iam_audit_config' resource. Please refer to CIS for Google Cloud v1.3, policy 2.1")
 
@@ -88,8 +60,5 @@ print("If this policy fails, ensure that a 'log_type' is specified for ADMIN_REA
 deny_undefined and 
 project_iam_value_1 and
 project_iam_value_2 and
-project_iam_value_3 and
-project_iam_value_4 and
-project_iam_value_5 and
-project_iam_value_6
+project_iam_value_3
 }
