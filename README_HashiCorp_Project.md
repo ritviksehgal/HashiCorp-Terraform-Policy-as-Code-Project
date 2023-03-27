@@ -29,7 +29,7 @@ The custom policies in this repository are numbered and correspond to the policy
 The functionality of these policies are tested against the Sentinel CLI (Command Line Interface).
 The download is found here: https://docs.hashicorp.com/sentinel/downloads 
 
-Each custom policy outcome is based on the infrastruction configuration (Terraform IaC). Before the Infrastructure in created, Terraform creates a speculative plan (mock file) to show what the Infrastructure would be implemented in production. The policy checks to ensure the mock file is in compliance, if it is, the policy is passed and the infrastructure is created. 
+Each custom policy outcome is based on the infrastruction configuration (Terraform IaC). Before the Infrastructure in created, Terraform creates a speculative plan (mock file) to show what Infrastructure would be implemented in production. The policy scripts checks to ensure the mock file is in compliance, if it is, the policy is passed and the infrastructure is deployed. 
 
 I have developed 2 scenarios for each policy: a pass scenario (in which the infrastructure is compliant) and a fail scenario (in which the infrastructure is not compliant).
 
