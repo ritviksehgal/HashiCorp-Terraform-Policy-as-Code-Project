@@ -4,7 +4,7 @@ HashiCorp is a software company that provides modular DevOps infrastructure mana
 
 Terraform is a cloud- agnostic SaaS (Software as a Service) application that is used by DevOps engineers for purposes of Infrastructure management and codification of security policies in a cloud environment. In essence, Terraform is an Infrastructure as Code (IaC) tool that automates infrastructure provisioning on cloud platforms including AWS (Amazon Web Services), Google Cloud Platform (GCP), and Azure (Microsoft).
 
-This project explores two key capabilities of Terraform: Infrastructure automation and security automation
+Terraform has two key capabilities: Infrastructure automation and security automation
 
 1. Terraform allows users to leverage Infrastructure as Code (IaC) to automate infrastructure management- this enables DevOps teams to introduce
 standardization and consistency within infrastructure while also reducing the potential for misconfigurations and resource sprawl.
@@ -15,7 +15,7 @@ before it goes to production- thereby verifying the cloud enviorement remains se
 is reduced to the extent possible. HashiCorp Sentinel is a Policy-as-Code (PaC) framework that enables this.
 
 
-*This project explores the security automation capabilities of HashiCorp Sentinel, however, supporting infrastructure automation scripts are also detailed.*
+*This project explores the security automation (#2) capabilities of HashiCorp Sentinel, however, supporting infrastructure automation scripts are also detailed.*
 
 	
 ## About the policies
