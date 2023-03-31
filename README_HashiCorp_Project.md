@@ -42,6 +42,6 @@ Regardless of the type of policy, there is a common workflow that is followed fo
 2. Using this script, we run a speculative plan using the 'terraform plan' command to review the potential changes and additions to our cloud infrastructure. The outcome is a 'mock' file describing all of the resources and configuration changes if the infrastructure automation script is deployed to the cloud environment.
 3. Using this speculative plan, we identify and configure policies and rules to ensure our resources and cloud environment is following security best practices. The outcome is a Policy as Code script that continuously monitors infrastructure changes for potential misconfigurations and insecure deployments.
 4. In order to ensure our Policy as Code script is effective in arresting/ blocking the creation of resources that do not follow security best practices, we create pass and fail scenarios to thoroughly test the policy.
-5. Once we test the infrastructure as Code script and it passes all policies and rules, we can be confident that the infrastructure follows best practices per CIS (Center for Internet Security). Deployment  via the 'terraform apply' command is the final step. 
+5. Once we test the infrastructure as Code script and it passes all policies and rules, we can be confident that the infrastructure follows best practices per CIS (Center for Internet Security). Deployment via the 'terraform apply' command is the final step. 
 
 
