@@ -1,14 +1,13 @@
 # HashiCorp Sentinel Policy as Code Project
 
-HashiCorp is a software company that provides modular DevOps infrastructure management for all types of cloud environment- public, private, and multi- cloud.  This project explores one of HashiCorp's hallmark products: Terraform
+HashiCorp is a software company that provides modular DevOps infrastructure management for all types of cloud environments- public, private, and multicloud.  This project explores one of HashiCorp's hallmark offerings: Terraform and its embeddable policy as code framework, HashiCorp Sentinel.
 
-Terraform is a cloud- agnostic SaaS (Software as a Service) application that is used by DevSecOps engineers for purposes of Infrastructure management and codification of security policies in a cloud environment. In essence, Terraform is an Infrastructure as Code (IaC) tool that automates infrastructure provisioning on cloud platforms including AWS (Amazon Web Services), Google Cloud Platform (GCP), and Azure (Microsoft).
+These offerings enables orginizations to introduce infrastructure automation and security automation into a cloud environment. They are detailed below:
 
-Terraform has two key capabilities: Infrastructure automation and security automation
 
-1. Terraform allows users to leverage Infrastructure as Code (IaC) to automate infrastructure management- this enables DevOps teams to introduce standardization and consistency within infrastructure while also reducing the potential for misconfigurations and resource sprawl. IaC also enables increased speed of deployment to cloud environments.
+1. Terraform enables users to leverage Infrastructure as Code (IaC) to automate infrastructure management in the cloud- this enables DevOps teams to introduce standardization and consistency within infrastructure while also reducing the potential for misconfigurations and resource sprawl. IaC also enables increased speed of deployment to cloud environments.
 	
-2. The codification of security policies at the object- level enables DevSecOps teams to meet security and compliance requirements by enforcing rules, regulations, and best practices for infrastructure deployments across the cloud environment. Policy-as-Code (PaC) can also automate security testing by catching infrastructure created insecurely before it goes to production- thereby verifying the cloud environment remains secure and the threat landscape is reduced to the extent possible. HashiCorp Sentinel is a Policy-as-Code framework that enables this.
+2. HashiCorp Sentinel enables the codification of security policies at the object- level which allows DevSecOps teams to meet security and compliance requirements by enforcing rules, regulations, and best practices for infrastructure deployments across a cloud environment. Policy-as-Code (PaC) can also automate security testing by arresting infrastructure created insecurely before it goes to production- thereby verifying the cloud environment remains secure and greatly reduces the possibility that recource configurations will introcude vulnerabilities.
 
 
 *This project explores the security automation (#2) capabilities of HashiCorp Sentinel, however, supporting infrastructure automation scripts are also detailed.*
