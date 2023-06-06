@@ -30,17 +30,15 @@ I have developed 2 scenarios for each policy: a pass scenario (in which the infr
 
 ## HashiCorp's proprietary language
 
-I used HashiCorp Configuration Language (HCL) to develop the IaC and PaC scripts. HCL is a language developed by HashiCorp to support programmatic use with its cloud infrastructure automation tools, such as Terraform.
+I used HashiCorp Configuration Language (HCL) to develop the IaC and PaC scripts. HCL is a language developed by HashiCorp to support the programmatic use of its product offerings.
 
 
-## Development of Policy as Code and Workflow
+## Development of Policy as Code and Overall Workflow
 
 Regardless of the type of policy, there is a common workflow that is followed for the development of each policy.
 
 1. A 'main.tf' file containing the IaC script is created, this represents the infrastructure configuration to be deployed onto the cloud platform.
-2. Using this script, we run a speculative plan using the 'terraform plan' command to review the potential changes and additions to our cloud infrastructure. The outcome is a 'mock' file describing all of the resources and configuration changes if the infrastructure automation script is deployed to the cloud environment.
+2. Using this script, we run a speculative plan using the 'terraform plan' command (using the Sentinel CLI) to review the potential changes and additions to our cloud infrastructure. The outcome is a 'mock' file describing all of the resources and configuration changes that would it executed if the infrastructure script is deployed to the cloud environment.
 3. Using this speculative plan, we identify and configure policies and rules to ensure our resources and cloud environment is following security best practices. The outcome is a Policy as Code script that continuously monitors infrastructure changes for potential misconfigurations and insecure deployments.
 4. In order to ensure our Policy as Code script is effective in arresting/ blocking the creation of resources that do not follow security best practices, we create pass and fail scenarios to thoroughly test the policy.
-5. Once we test the infrastructure as Code script and it passes all policies and rules, we can be confident that the infrastructure follows best practices per CIS (Center for Internet Security). Deployment via the 'terraform apply' command is the final step. 
-
-
+5. Once we test the infrastructure as Code script and it passes all policies and rules, we can be confident that the infrastructure follows best practices per CIS (Center for Internet Security). Deployment via the 'terraform apply' command is the final step.
